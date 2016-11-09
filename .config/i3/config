@@ -98,6 +98,8 @@ bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym button3 floating toggle
+bindsym $mod+button3 floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -109,10 +111,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1: Terminals"
+set $workspace1 "1: Terminals"
 set $workspace2 "2: Main"
-set $workspace3 "3: Study"
-set $workspace4 "4: Steam"
+set $workspace3 "3:  Study"
+set $workspace4 "4:   Steam"
  
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -142,6 +144,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 for_window [title="Guake!"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="Franz"] floating enable
+for_window [title="Timetable.png"] floating enable,move container to workspace $workspace3
+
 for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace3
 for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
 for_window [class="Pantheon-*"] floating enable
@@ -208,10 +212,14 @@ bindsym $mod+Delete exec $HOME/.config/i3/scripts/system_menu
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 10%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 10%- unmute
-#bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -D pulse set Master toggle
+#bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 10%+ unmute
+#bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 10%- unmute
+##bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+#bindsym XF86AudioMute exec amixer -D pulse set Master toggle
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust high
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust low
+bindsym XF86AudioMute exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust mute
 
 #
 ## Sreen brightness controls
@@ -246,12 +254,18 @@ bar {
 # Notification
 exec killall -q notify-osd
 exec --no-startup-id dunst -config ~/.config/i3/dunst.conf
+
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
+exec xautolock -detectsleep -time 3 -locker '~/Wallpaper/lockscreen.sh' &
+#exec xss-lock -- sh ~/Wallpaper/lockscreen.sh & 
+
 # Wallpaper
 exec_always --no-startup-id feh --bg-scale /home/iniz/Wallpaper/wallpaper.jpg
 exec /home/iniz/Franz/Franz
+exec eog /home/iniz/Google\ Drive/UST/Timetable.png
 exec /opt/takeabreak/takeabreak/takeabreak_run
 exec fcitx
+exec guak
 
 exec xbacklight -set 1
 exec fluxgui
