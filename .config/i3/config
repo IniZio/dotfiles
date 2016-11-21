@@ -12,7 +12,8 @@
 set $mod Mod4
 
 set $bg-color 	         #2f343f
-set $active-bg-color 	   #005060 
+#set $active-bg-color 	   #005060 
+set $active-bg-color 	   #3D5229
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -141,18 +142,18 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # floating window
-for_window [title="Guake!"] floating enable
+for_window [title="Guake!"] floating enable, move container to workspace $workspace2
 for_window [class="Steam"] floating enable
 for_window [class="Franz"] floating enable
-for_window [title="Timetable.png"] floating enable,move container to workspace $workspace3
+for_window [title="Timetable.png"] floating enable,move container to workspace $workspace1
 
-for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace3
+for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace1
 for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
 for_window [class="Pantheon-*"] floating enable
 
 # default workspaces
 assign [class="Steam"] $workspace4
-assign [class="Franz"] $workspace3
+assign [class="Franz"] $workspace1
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -238,6 +239,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym ctrl+space exec synapse
 
 bar {
+        position top
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         tray_output primary
         colors {
@@ -247,16 +249,17 @@ bar {
 		      focused_workspace  $bg-color          $bg-color          $text-color
 		      inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 		      urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+          statusline #ffffff
 	      }
 }
 
 ## Startup applications
 # Notification
 exec killall -q notify-osd
-exec --no-startup-id dunst -config ~/.config/i3/dunst.conf
+exec_always --no-startup-id dunst -config ~/.config/i3/dunst.conf
 
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
-exec xautolock -detectsleep -time 3 -locker '~/Wallpaper/lockscreen.sh' &
+exec xautolock -detectsleep -time 3 -locker 'sh /home/iniz/Wallpaper/lockscreen.sh' &
 #exec xss-lock -- sh ~/Wallpaper/lockscreen.sh & 
 
 # Wallpaper
@@ -265,12 +268,12 @@ exec /home/iniz/Franz/Franz
 exec eog /home/iniz/Google\ Drive/UST/Timetable.png
 exec /opt/takeabreak/takeabreak/takeabreak_run
 exec fcitx
-exec guak
+exec guake
 
 exec xbacklight -set 1
 exec fluxgui
 exec insync start
 
 exec_always exec sh $HOME/Wallpaper/wallpaper.sh
-exec --no-startup-id compton -f
+exec_always --no-startup-id compton -f;
 
