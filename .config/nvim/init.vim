@@ -73,10 +73,23 @@ set hlsearch
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
- 
+
+" Map the leader key to SPACE
+let mapleader="\<SPACE>"
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
+set gdefault            " Use 'g' flag by default with :s/foo/bar/.
+set magic               " Use 'magic' patterns (extended regular expressions).
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+" Search and Replace
+nmap <Leader>s :%s//g<Left><Left>
  
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
@@ -103,6 +116,7 @@ set confirm
  
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
+set noerrorbells
  
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
@@ -117,9 +131,11 @@ set mouse=a
 set cmdheight=2
  
 " Display line numbers on the left
-" set number
+set number
 set relativenumber
- 
+
+set formatoptions+=o
+
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
  
@@ -142,14 +158,48 @@ set expandtab
 " four characters wide.
 set shiftwidth=2
 set tabstop=2
+set nojoinspaces " prevents inserting two spaces after jj
+
+" More natural splits
+set splitbelow          " Horizontal split below current.
+set splitright          " Vertical split to right of current.
+
+if !&scrolloff
+  set scrolloff=3       " Show next 3 lines while scrolling.
+endif
+if !&sidescrolloff
+  set sidescrolloff=5   " Show next 5 columns while side-scrolling.
+endif
+set nostartofline       " Do not jump to first character with page commands.
 
 "
 " Appearance options {{{1
 "
-" COlors, layouts
+" Colors, layouts
+
+set t_Co=256
+set termguicolors
+
+" in case t_Co alone doesn't work, add this as well:
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
 
 " colorscheme mac_classic
-" set guifont=Hack,DejaVu\ Sans\ Mono:h12
+"colorscheme murphy
+colorscheme kalisi
+set background=light
+highlight Normal ctermfg=black ctermbg=white
+:hi CursorLine   cterm=NONE ctermbg=lightgrey ctermfg=NONE guibg=lightgrey guifg=NONE
+set cursorline!
+":nnoremap <Leader>c :set cursorline!<CR>
+":nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+set guifont=Source\ Code\ Pro,Hack,System\ San\ Francisco\ Display:h12
+
+" let g:python_host_prog = '/full/path/to/neovim2/bin/python'
+let g:python3_host_prog = '/usr/bin/python3.5m'
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.tpp set filetype=cpp
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
 "------------------------------------------------------------
 " Vundle options {{{1
@@ -161,41 +211,78 @@ call vundle#rc('~/.config/nvim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'http://github.com/ctrlpvim/ctrlp.vim.git'
-Plugin 'git://github.com/airblade/vim-gitgutter.git'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'stanangeloff/php.vim'
+"Plugin 'stanangeloff/php.vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'git://github.com/tpope/vim-fugitive.git'
+Plugin 'git://github.com/tpope/vim-fugitive.git'   "Git integration e.g. :Gstatus
 Plugin '907th/vim-auto-save'
-"Plugin 'rhysd/nyaovim-markdown-preview'
-Plugin 'rhysd/nyaovim-mini-browser'
+Plugin 'rhysd/nyaovim-markdown-preview'
+"Plugin 'rhysd/nyaovim-mini-browser'
 "Plugin 'spf13/PIV'
 Plugin 'rhysd/nyaovim-popup-tooltip'
-Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'  " syntax checking
 Plugin 'scrooloose/nerdtree'
 "Plugin 'bling/vim-airline'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
-Plugin 'valloric/youcompleteme'
-Plugin 'townk/vim-autoclose'
-Plugin 'alvan/vim-closetag'
-Plugin 'eugen0329/vim-esearch'
-Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'valloric/youcompleteme'
+Plugin 'townk/vim-autoclose'   "auto close brackets
+"Plugin 'alvan/vim-closetag'
+Plugin 'docunext/closetag.vim'  " close html tags
+Plugin 'gcmt/wildfire.vim'  " select closest word
+Plugin 'eugen0329/vim-esearch'  "  <leader>FF fuzzy search for word
+"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'magarcia/vim-angular2-snippets' 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'posva/vim-vue'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'shougo/deoplete.nvim'
+"Plugin 'terryma/vim-instant-markdown'
+Plugin 'lfilho/cosco.vim' "semi-colon
+Plugin 'IniZio/vim-css-color'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'hsanson/vim-android'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'wakatime/vim-wakatime'
+Plugin 'freeo/vim-kalisi'
+Plugin 'Yggdroot/indentLine'
+"Plugin  'ShowFunc.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+
+"" Plugin settings
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_theme='badwolf'
+"set guifont=Inconsolata\ for\ Powerline
 
 " ctrlp option
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" Open file menu
+nnoremap <Leader>o :CtrlP<CR>
+" Open buffer menu
+nnoremap <Leader>b :CtrlPBuffer<CR>
+" Open most recently used files
+nnoremap <Leader>f :CtrlPMRUFiles<CR>
+
+" gitgutter option
+let g:gitgutter_sign_column_always = 0
+let g:gitgutter_highlight_lines = 0
 
 " tagbar option
-let g:tagbar_ctags_bin = '~/ctags58'
+noremap U <C-r>
+nmap <C-r> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/usr/bin/ctags-exuberant'
+
+" autoclose option
+let g:autoclose_vim_commentmode = 1
 
 " status line option
 set statusline+=%#warningmsg#
@@ -207,6 +294,37 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
+let g:syntastic_aggregate_errors=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_enable_ballons=has('ballon_eval')
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_loc_list_height=3
+let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
+let g:syntastic_mode_map = { 'mode': 'active' }
+let g:syntastic_javascript_checkers=['jshint', 'jscs']
+let g:syntastic_json_checkers=['jsonlint', 'jsonval']
+"let g:syntastic_ruby_checkers=['rubocop','mri']
+"let g:syntastic_perl_checkers=['perl','perlcritic','podchecker']
+let g:syntastic_python_checkers=['pylint','pep8','python']
+let g:syntastic_cpp_checkers=['gcc','cppcheck','cpplint','ycm','clang_tidy','clang_check']
+let g:syntastic_c_checkers=['gcc','make','cppcheck','clang_tidy','clang_check']
+"let g:syntastic_haml_checkers=['haml_lint', 'haml']
+let g:syntastic_html_checkers=['jshint']
+let g:syntastic_yaml_checkers=['jsyaml']
+let g:syntastic_sh_checkers=['sh','shellcheck','checkbashisms']
+let g:syntastic_vim_checkers=['vimlint']
+"let g:syntastic_enable_perl_checker=1
+let g:syntastic_c_clang_tidy_sort=1
+let g:syntastic_c_clang_check_sort=1
+let g:syntastic_c_remove_include_errors=1
+let g:syntastic_quiet_messages = { "level": "[]", "file": ['*_LOCAL_*', '*_BASE_*', '*_REMOTE_*']  }
+let g:syntastic_stl_format = '[%E{E: %fe #%e}%B{, }%W{W: %fw #%w}]'
+let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5"
 
 " autosave option
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -216,20 +334,89 @@ autocmd vimenter * NERDTree
 let NERDTreeQuitOnOpen=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:NERDTreeHijackNetrw=0
-
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.vue,*.js"
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore  = ['\.o$']
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'error'
 
+" docunext/closetag
+let g:closetag_html_style=1
+source ~/.config/nvim/bundle/vim-closetag/plugin/closetag.vim
+au Filetype html,xml,xsl,vue source ~/.config/nvim/bundle/vim-closetag/plugin/closetag.vim
+
+" alvan/vim_closetag
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.vue,*.js"
+
+let g:closetag_html_style=1
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+
+let g:calnstant_markdown_slow = 1
+
+" Cosco
+let g:auto_comma_or_semicolon = 0     " Default : 0
+"autocmd FileType javascript,css,cpp nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css,cpp imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+
+let g:android_sdk_path = '/home/iniz/Android/Sdk'
+
+" javacomplete2
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+nmap <F5> <Plug>(JavaComplete-Imports-Add)
+imap <F5> <Plug>(JavaComplete-Imports-Add)
+
+nmap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+imap <F6> <Plug>(JavaComplete-Imports-AddMissing)
+
+nmap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+imap <F7> <Plug>(JavaComplete-Imports-RemoveUnused)
+
+" Easy motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>k <Plug>(easymotion-j)
+map <Leader>l <Plug>(easymotion-k)
+
+let g:indentLine_char = '|'
+
+" map  <C-r>   <Plug>ShowFunc
+" map! <C-r>   <Plug>ShowFunc
+
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"" nyaovim options
+" markdown preview
+let g:markdown_preview_auto=1
 
 "------------------------------------------------------------
 " Mappings {{{1
 "
 " Useful mappings
- 
+
+
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
@@ -240,12 +427,22 @@ nnoremap <C-L> :nohl<CR><C-L>
 inoremap jj <Esc>
 inoremap ii <Esc>
 
-" Tab navigation 
-nnoremap <C-S-tab> :bprevious<CR>
-nnoremap <C-tab>   :bnext<CR>
+noremap m %
+noremap vm v%
 
-nnoremap <A-j> :bprevious<CR>
-nnoremap <A-k>   :bnext<CR>
+" Use ; for commands.
+nnoremap ; :
+" Use Q to execute default register.
+nnoremap Q @q   
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" noremap ; l
+" noremap l k
+" noremap k j
+" noremap j h
  
-map <C-n> :NERDTreeToggle<CR>
 "------------------------------------------------------------
