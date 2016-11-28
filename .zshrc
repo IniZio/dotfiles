@@ -1,14 +1,23 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/opt/android-studio/bin:$PATH
+export PATH="$HOME/Android/tools:$PATH"
+export PATH="$HOME/Android/platform-tools:$PATH"
+
+#export TERMINAL=/usr/bin/pantheon-terminal
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/iniz/.oh-my-zsh
+export ZSH=/home/iniz/.oh-my-zsh
+
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
 ZSH_THEME="mh"
+#ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,7 +64,17 @@ ZSH_THEME="mh"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -84,8 +103,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cls="clear"
 
 figlet IniZio
 
 . /etc/profile.d/z.sh
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
+alias THOUGHTS='cd /home/iniz/Source/thoughts/posts'
