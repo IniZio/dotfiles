@@ -1,0 +1,12 @@
+*
+!.gitignore
+!.bashrc
+!.zshrc
+!.vimrc
+!Wallpaper/
+Wallpaper/*.jpg
+Wallpaper/*.png
+!.config/i3
+!.oh-my-zsh/*
+!.config/nvim/init.vim
+!.config/nyaovim/nyaovimrc.html
