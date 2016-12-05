@@ -200,7 +200,6 @@ let g:python3_host_prog = '/usr/bin/python3.5m'
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost *.tpp set filetype=cpp
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
-
 "------------------------------------------------------------
 " Vundle options {{{1
 "
@@ -219,7 +218,7 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'git://github.com/tpope/vim-fugitive.git'   "Git integration e.g. :Gstatus
 Plugin '907th/vim-auto-save'
-Plugin 'rhysd/nyaovim-markdown-preview'
+"Plugin 'rhysd/nyaovim-markdown-preview'
 "Plugin 'rhysd/nyaovim-mini-browser'
 "Plugin 'spf13/PIV'
 Plugin 'rhysd/nyaovim-popup-tooltip'
@@ -229,8 +228,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 "Plugin 'valloric/youcompleteme'
 Plugin 'townk/vim-autoclose'   "auto close brackets
-"Plugin 'alvan/vim-closetag'
-Plugin 'docunext/closetag.vim'  " close html tags
+Plugin 'alvan/vim-closetag'
+Plugin 'docunext/closetag.vim'  " close html tag
 Plugin 'gcmt/wildfire.vim'  " select closest word
 Plugin 'eugen0329/vim-esearch'  "  <leader>FF fuzzy search for word
 "Plugin 'nathanaelkane/vim-indent-guides'
@@ -244,17 +243,22 @@ Plugin 'shougo/deoplete.nvim'
 Plugin 'lfilho/cosco.vim' "semi-colon
 Plugin 'IniZio/vim-css-color'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'hsanson/vim-android'
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'hsanson/vim-android'
+"Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'freeo/vim-kalisi'
-Plugin 'Yggdroot/indentLine'
+Plugin 'Yggdroot/indentLine' " show indentguide lines
 "Plugin  'ShowFunc.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
-
+Plugin 'sjl/gundo.vim'
+Plugin 'neomake/neomake'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'DonnieWest/VimStudio'
+"Plugin 'fcitx.vim'
+Plugin 'wesleyche/srcexpl' "show definition of selected function/keyword
 "" Plugin settings
 
 let g:airline#extensions#tabline#enabled = 1
@@ -325,6 +329,7 @@ let g:syntastic_c_remove_include_errors=1
 let g:syntastic_quiet_messages = { "level": "[]", "file": ['*_LOCAL_*', '*_BASE_*', '*_REMOTE_*']  }
 let g:syntastic_stl_format = '[%E{E: %fe #%e}%B{, }%W{W: %fw #%w}]'
 let g:syntastic_java_javac_options = "-g:none -source 8 -Xmaxerrs 5 -Xmaswarns 5"
+let g:syntastic_asm_compiler="mips-linux-gnu-gcc"
 
 " autosave option
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -399,6 +404,9 @@ let g:indentLine_char = '|'
 
 " map  <C-r>   <Plug>ShowFunc
 " map! <C-r>   <Plug>ShowFunc
+"
+" Support for Gundo, a visual & mini tree structure of document changes
+nnoremap <F5> :GundoToggle<CR>
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -406,6 +414,59 @@ filetype plugin indent on    " required
 "" nyaovim options
 " markdown preview
 let g:markdown_preview_auto=1
+
+" Autocompletion
+set ofu=syntaxcomplete#Complete
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType phtml set omnifunc=phpcomplete#CompletePHP
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+" Autocompletion using the TAB key
+
+" This function determines, whether we are on the start of the line text (th
+
+" if we want to try autocompletion
+
+function! InsertTabWrapper()
+
+   let col = col('.') - 1
+
+    if !col || getline('.')[col - 1] !~ '\k'
+
+       return "\<tab>"
+
+    else
+
+        return "\<c-p>"
+
+    endif
+
+endfunction
+
+" Remap the tab key to select action with InsertTabWrapper
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+" spelling
+if v:version >= 700
+  " Enable spell check for text files
+  autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en
+endif
+
+if has("autocmd")
+    " Have Vim jump to the last position when reopening a file
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g'\"" | endif
+    " Support mips.asm files
+    autocmd BufNewFile,BufRead *.mips.asm set syntax=mips.vim
+    " Trim Trailing white space on general files
+    autocmd FileType c,cpp,java,php,js,css,xml,xsl,s autocmd BufWritePre * :
+endif
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -426,7 +487,9 @@ map Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 inoremap jj <Esc>
 inoremap ii <Esc>
-
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
 noremap m %
 noremap vm v%
 
