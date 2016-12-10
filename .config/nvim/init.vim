@@ -259,6 +259,8 @@ Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'DonnieWest/VimStudio'
 "Plugin 'fcitx.vim'
 Plugin 'wesleyche/srcexpl' "show definition of selected function/keyword
+Plugin 'mhinz/vim-startify'
+
 "" Plugin settings
 
 let g:airline#extensions#tabline#enabled = 1

@@ -9,15 +9,30 @@ export PATH="$HOME/Android/platform-tools:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH=/home/iniz/.oh-my-zsh
 
+export TERM="xterm-256color"
+export GOPATH="/home/iniz/go/"
+
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="mh"
+#ZSH_THEME="mh"
+#ZSH_THEME="powerline"
+ZSH_THEME="bullet-train"
 #ZSH_THEME="random"
+
+# powerline theme options
+#POWERLINE_RIGHT_A="exit-status-on-fail"
+
+# bullet-train theme options
+BULLETTRAIN_PROMPT_CHAR=":"
+#BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
+BULLETTRAIN_TIME_BG="yellow"
+BULLETTRAIN_DIR_CONTEXT_SHOW="true"
+BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
+BULLETTRAIN_CONTEXT_DEFAULT_USER="iniz"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -42,7 +57,7 @@ ZSH_THEME="mh"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -61,20 +76,22 @@ ZSH_THEME="mh"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z)
 
 source $ZSH/oh-my-zsh.sh
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
+
+# Make ctrl+z togglable
+#fancy-ctrl-z () {
+#  if [[ $#BUFFER -eq 0 ]]; then
+#    BUFFER="fg"
+#    zle accept-line
+#  else
+#    zle push-input
+#    zle clear-screen
+#  fi
+#}
+#zle -N fancy-ctrl-z
+#bindkey '^Z' fancy-ctrl-z
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -104,9 +121,9 @@ bindkey '^Z' fancy-ctrl-z
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
+alias scribble='cd /home/iniz/Source/thoughts/posts'
 
 figlet IniZio
 
-. /etc/profile.d/z.sh
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
-alias THOUGHTS='cd /home/iniz/Source/thoughts/posts'
+#. /etc/profile.d/z.sh
+#source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  

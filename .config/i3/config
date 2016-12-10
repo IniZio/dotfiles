@@ -57,11 +57,14 @@ bindsym --release button2 kill
 bindsym $mod+Shift+22 exec systemctl restart lightdm.service
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# start j4-dmenu
+bindsym $mod+d exec j4-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -124,10 +127,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1: Terminals"
-set $workspace2 "2: Main"
-set $workspace3 "3:  Study"
-set $workspace4 "4:   Steam"
+set $workspace1 "1:  Terminals"
+set $workspace2 "2:  Main"
+set $workspace3 "3:   Study"
+set $workspace4 "4:    Steam"
  
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -161,23 +164,34 @@ for_window [title="Guake!"] floating enable #, move container to workspace $work
 for_window [title="albert"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [class="Steam"] floating enable
 for_window [class="Franz"] floating enable
+for_window [class="file-roller"] floating enable
 for_window [title="Timetable.png"] floating enable,move container to workspace $workspace1
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace1
 for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
 for_window [class="Pantheon-*"] floating enable
+#for_window [class="gnome-*"] floating enable
+for_window [class="Tor Browser"] floating enable, move container to workspace $workspace1
+for_window [title="Pages Unresponsive"] floating enable
+no_focus [class="fcitx"]
 
 # default workspaces
 assign [class="Steam"] $workspace4
 assign [class="Franz"] $workspace1
+#assign [class="conky"] $workspace1
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+bindsym $mod+minus [class="Tor Browser"] move scratchpad, exec notify-send hey
+bindsym $mod+equal [class="Tor Browser"] scratchpad show, move container to workspace $workspace1
+
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#bindsym $mod+Shift+e exec /home/iniz/.config/i3/scripts/exit_menu
+#bindsym $mod+Shift+e exec $HOME/.config/i3/scripts/exit_menu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -187,16 +201,21 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 3 px or 3 ppt
+        bindsym k resize grow height 3 px or 3 ppt
+        bindsym j resize shrink height 3 px or 3 ppt
+        bindsym l resize grow width 3 px or 3 ppt
+
+        bindsym ctrl+h resize shrink width 12 px or 12 ppt
+        bindsym ctrl+k resize grow height 12 px or 12 ppt
+        bindsym ctrl+j resize shrink height 12 px or 12 ppt
+        bindsym ctrl+l resize grow width 12 px or 12 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width 3 px or 3 ppt
+        bindsym Down resize grow height 3 px or 3 ppt
+        bindsym Up resize shrink height 3 px or 3 ppt
+        bindsym Right resize grow width 3 px or 3 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -225,18 +244,9 @@ bindsym mod1+ctrl+l exec sh $HOME/Wallpaper/lockscreen.sh
 bindsym $mod+Delete exec $HOME/.config/i3/scripts/system_menu
 
 #e Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-#bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 10%+ unmute
-#bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 10%- unmute
-##bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-#bindsym XF86AudioMute exec amixer -D pulse set Master toggle
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust high
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust low
-bindsym XF86AudioMute exec --no-startup-id /home/iniz/.config/i3/scripts/volume_adjust mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust high
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust low
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust mute
 
 #
 ## Sreen brightness controls
@@ -244,31 +254,36 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 #
 ## Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
-#bindsym XF86AudioPrev exec playerctl previousStart i3bar to display a workspace bar (plus the system information i3status
+#Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-
-#bindsym $mod+d exec rofi -show run -font "System San Francisco Display 18"
-#bindsym $mod+d exec rofi -show run -bg "#222222" -fg "#2ECC71" -hlbg "#445544" -hlfg "#2EEE71" -bw 4 -eh 1 -font "Roboto Slab 18" -opacity "80" -lines 8 -line-margin 4 -width 100 -padding 160 -terminal urxvtc
-
-#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 450 -opacity "50" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-
 #bindsym $mod+space exec synapse
-set $transparent #00000060
+
+# 全屏截图
+bindsym --release Print exec "scrot -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+# 截取当前窗口
+bindsym --release $mod+Print exec "scrot -u -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+# 鼠标选择区域
+bindsym --release $mod+Shift+Print exec "scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+# QQ 风格的截屏快捷键
+bindsym --release Control+Mod1+A exec "scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+
+set $transparent #00404060
 bar {
   height 25
   position top
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   i3bar_command i3bar -t
-  font pango:System San Francisco Display, FontAwesome 10
+  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+  font pango:Ubuntu,Fira Code, System San Francisco Display, FontAwesome, Terminus 10
   tray_output primary
   colors {
     #separator #AAAAAA
     separator #FFFFFF
-    background #1f2326
+    #background #1f2326
     background $transparent
     statusline #FFFFFF
     focused_workspace #9FCA56 #9FCA56 #151718
@@ -284,17 +299,19 @@ exec_always killall -q notify-osd
 exec_always --no-startup-id dunst -config ~/.config/i3/dunst.conf
 
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
-exec xautolock -detectsleep -time 10 -locker 'sh /home/iniz/Wallpaper/lockscreen.sh' &
+exec xautolock -detectsleep -time 10 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 5 -notifier 'notify-send Going to Lock screen' 
 #exec xss-lock -- sh ~/Wallpaper/lockscreen.sh & 
 
+exec sh ~/.conky/conky-startup.sh
+
 # Wallpaper
-exec_always exec sh $HOME/Wallpaper/wallpaper.sh
-exec_always --no-startup-id feh --bg-scale /home/iniz/Wallpaper/wallpaper.jpg
+exec sh $HOME/Wallpaper/wallpaper.sh
+exec_always --no-startup-id feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
 exec albert
-exec /home/iniz/Franz/Franz
-#exec eog /home/iniz/Google\ Drive/UST/Timetable.png
+exec $HOME/Franz/Franz
+#exec eog $HOME/Google\ Drive/UST/Timetable.png
 #exec /opt/takeabreak/takeabreak/takeabreak_run
-exec_always fcitx
+exec fcitx
 exec guake
 
 exec xbacklight -set 1
@@ -307,9 +324,9 @@ exec_always --no-startup-id compton -b
 smart_gaps on
 smart_borders on
 gaps inner 10
-#gaps outer 2 
+#gaps outer 2
 
-client.focused #4F99D3 #4F99D3 #151718 #9FCA56
-client.focused_inactive #9FCA56 #9FCA56 #151718 #A074C4
-client.unfocused #1f2326 #1f2326 #AAAAAA #A074C4
-client.urgent #CE4045 #CE4045 #FFFFFF #DCCD69
+client.focused #0088CC #0088CC #ffffff #dddddd
+client.focused_inactive #333333 #333333 #888888 #292d2e
+client.unfocused #333333 #333333 #888888 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000
