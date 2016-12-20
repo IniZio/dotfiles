@@ -210,7 +210,7 @@ call vundle#rc('~/.config/nvim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'http://github.com/ctrlpvim/ctrlp.vim.git'
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin 'hail2u/vim-css3-syntax'
@@ -307,7 +307,7 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_enable_ballons=has('ballon_eval')
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=3
 let g:syntastic_ignore_files = ['^/usr/', '*node_modules*', '*vendor*', '*build*', '*LOCAL*', '*BASE', '*REMOTE*']
@@ -469,6 +469,41 @@ if has("autocmd")
     " Trim Trailing white space on general files
     autocmd FileType c,cpp,java,php,js,css,xml,xsl,s autocmd BufWritePre * :
 endif
+
+
+" nvim's embedded terminal
+tnoremap <C-F12> <C-\><C-n> 
+set switchbuf+=useopen
+function! TermEnter()
+  let bufcount = bufnr("$")
+  let currbufnr = 1
+  let nummatches = 0
+  let firstmatchingbufnr = 0
+  while currbufnr <= bufcount
+    if(bufexists(currbufnr))
+      let currbufname = bufname(currbufnr)
+      if(match(currbufname, "term://") > -1)
+        echo currbufnr . ": ". bufname(currbufnr)
+        let nummatches += 1
+        let firstmatchingbufnr = currbufnr
+        break
+      endif
+    endif
+    let currbufnr = currbufnr + 1
+  endwhile
+  if(nummatches >= 1)
+    execute ":sbuffer ". firstmatchingbufnr
+    startinsert
+  else
+    execute ":terminal"
+  endif
+endfunction
+map <F12> :call TermEnter()<CR>
+function! PhpUnit()
+  call TermEnter()
+  normal i phpunit
+endfunction
+map <F11> :call PhpUnit()<CR>
 
 "------------------------------------------------------------
 " Mappings {{{1
