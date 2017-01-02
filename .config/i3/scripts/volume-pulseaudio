@@ -13,7 +13,7 @@ AUDIO_MUTED_SYMBOL='  '
 
 DEFAULT_COLOR="#ffffff"
 #MUTED_COLOR="#a0a0a0"
-MUTED_COLOR="#b0b0b0"
+MUTED_COLOR="#d0d0d0"
 
 LONG_FORMAT=0
 SHORT_FORMAT=2
@@ -69,8 +69,8 @@ case "$BLOCK_BUTTON" in
     1) set_default_playback_device_next ;;
     2) amixer -q -D pulse sset Master toggle ;;
     3) set_default_playback_device_next -1 ;;
-    4) amixer -q -D pulse sset Master 5%+ ;;
-    5) amixer -q -D pulse sset Master 5%- ;;
+    4) amixer -q -D pulse sset Master 2%+ ;;
+    5) amixer -q -D pulse sset Master 2%- ;;
 esac
 
 for name in INDEX NAME VOL MUTED; do

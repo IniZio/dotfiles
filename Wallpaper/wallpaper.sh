@@ -1,8 +1,13 @@
 #!/bin/sh
 picOpts="zoom"
 
+#URL='https://unsplash.it/1920/1080/\?random'
+URL='https://source.unsplash.com/random/1920x1080'
+#URL=$(curl -s 'https://wall.alphacoders.com/api2.0/get.php?auth=cca3ef22b757d25401524545a4981c25&method=newest&height=1080&width=1920' | jq -r '.wallpapers[0].url_image') 
+
 #curl -s -o $HOME/Wallpaper/wall.jpg -L https://unsplash.it/1920/1080/\?random
-curl -s -o $HOME/Wallpaper/wall.jpg -L https://source.unsplash.com/random/1920x1080 
+#curl -s -o $HOME/Wallpaper/wall.jpg -L https://source.unsplash.com/random/1920x1080 
+curl -s -o $HOME/Wallpaper/wall.jpg -L $URL
 
 #Blur Image
 #convert $HOME/Wallpaper/wall.jpg -blur 0x4 $HOME/Wallpaper/wall.jpg

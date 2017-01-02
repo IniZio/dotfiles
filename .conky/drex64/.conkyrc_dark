@@ -1,0 +1,105 @@
+#°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+#Conky-Debian-Drex64
+#by ilnanny 
+#http://ilnanny.deviantart.com/
+#°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+
+
+background yes
+use_xft yes
+xftfont FreeSans:bold:size=9
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 250 250
+maximum_width 250
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_right
+gap_x 14
+gap_y 70
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+
+TEXT
+#${image ./bordo.png -p 0,0 -s 360x1060}
+# SISTEMA
+${font FreeSans:Bold:size=10}${color grey}SISTEMA ${hr 2}$color${font}
+O.S. $alignr Debian-Testing
+Hostname $alignr $nodename
+$sysname $kernel $alignr $machine
+Uptime $alignr $uptime
+
+
+# CPU
+${font FreeSans:Bold:size=10}${color grey}CPU ${hr 2}
+$color${font}Intel Core 2 E6420 $alignr ${freq_g cpu0}GHz
+
+${font}Core 1 ${alignr}${execi 30 sensors | grep 'Core 0:' | cut -c16-22}
+${font}Core 2 ${alignr}${execi 30 sensors | grep 'Core 1:' | cut -c16-22}
+
+${font}Thread 1: ${cpu cpu1}%$alignc${color grey}${cpubar 10 cpu1}${color}
+${font}Thread 2: ${cpu cpu2}%$alignc${color grey}${cpubar 10 cpu2}${color}
+
+
+# RISORSE
+${font FreeSans:Bold:size=10}${color grey}TOP ${hr 2}
+$color${font FreeSans:bold:size=9}PROCESSI $alignr USO CPU$font
+
+${top name 1}${alignr}${top cpu 1} %
+${top name 2}${alignr}${top cpu 2} %
+${top name 3}${alignr}${top cpu 3} %
+${top name 4}${alignr}${top cpu 4} %
+${top name 5}${alignr}${top cpu 5} %
+
+
+# MEMORIA
+${font FreeSans:Bold:size=10}${color grey}MEMORIA ${hr 2}
+$color${font FreeSans:bold:size=9}RAM$font
+$mem / $memmax $alignr $memperc %
+${color grey}${membar 10}${color}
+
+${font FreeSans:bold:size=9}SWAP$font
+$swap / $swapmax $alignr $swapperc
+${color grey}${swapbar 10}${color}
+
+
+# DISCHI
+${font FreeSans:Bold:size=10}${color grey}DISCHI${hr 2}
+$color${font FreeSans:bold:size=9}Root $font
+${fs_used /} / ${fs_size /} $alignr ${fs_used_perc /} %
+${color grey}${fs_bar 10 /}${color}
+$color${font FreeSans:bold:size=9}Home $font
+${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /} %
+${color grey}${fs_bar 10 /}${color}
+$color${font FreeSans:bold:size=9}Dati $font
+${fs_used /media/ilnanny/DATI/} / ${fs_size /media/ilnanny/DATI/} $alignr ${fs_used_perc /} %
+${color grey}${fs_bar 10 /}${color}
+
+
+# RETE
+${font FreeSans:Bold:size=10}${color grey}RETE ${hr 2}
+$color${font FreeSans:bold:size=9}Locale $font$alignr ${addr wlan0}
+$color${font FreeSans:bold:size=9}Publico $font$alignr ${execi 3600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
+
+Down $alignr ${downspeedf wlan0} kb/s
+${color grey}${downspeedgraph 10}${color}
+Down Totale $alignr ${totaldown wlan0}
+
+Up $alignr ${upspeedf wlan0} kb/s
+${color grey}${upspeedgraph 10}${color}
+Up Totale $alignr ${totalup wlan0}
+
+

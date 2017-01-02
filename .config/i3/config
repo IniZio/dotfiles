@@ -12,7 +12,7 @@
 set $mod Mod4
 
 set $bg-color 	         #2f343f
-#set $active-bg-color 	   #005060 
+#set $active-bg-color 	   #005060
 set $active-bg-color 	   #3D5229
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -29,7 +29,7 @@ set $urgent-bg-color     #E53935
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:FontAwesome, System San Francisco Display 10
+font pango:FontAwesome, Ubuntu, System San Francisco Display 10
 #font pango:Fira Code, FontAwesome 9
 
 # thin borders
@@ -51,20 +51,21 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym --release button2 kill
+bindsym button2 kill
+bindsym --whole-window $mod+button2 kill
 
 # restart display manager
 bindsym $mod+Shift+22 exec systemctl restart lightdm.service
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # start j4-dmenu
-bindsym $mod+d exec j4-dmenu-desktop
+#bindsym $mod+d exec j4-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -127,11 +128,11 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspace names
-set $workspace1 "1:  Terminals"
+set $workspace1 "1:  Sticky"
 set $workspace2 "2:  Main"
-set $workspace3 "3:   Study"
-set $workspace4 "4:    Steam"
- 
+set $workspace3 "3:  Support"
+set $workspace4 "4:  Trash"
+
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -162,16 +163,19 @@ for_window [class="^.*"] border pixel 1
 # floating window
 for_window [title="Guake!"] floating enable #, move container to workspace $workspace2
 for_window [title="albert"] floating enable, border pixel 0 #, move container to workspace $workspace2
+for_window [title="synapse"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [class="Steam"] floating enable
 for_window [class="Franz"] floating enable
 for_window [class="file-roller"] floating enable
+for_window [class="Nautilus"] floating enable
 for_window [title="Timetable.png"] floating enable,move container to workspace $workspace1
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [class="Pantheon-*"] floating enable
+for_window [class="alarm-clock-applet"] floating enable
 
 for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace1
 for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
-for_window [class="Pantheon-*"] floating enable
 #for_window [class="gnome-*"] floating enable
 for_window [class="Tor Browser"] floating enable, move container to workspace $workspace1
 for_window [title="Pages Unresponsive"] floating enable
@@ -211,6 +215,11 @@ mode "resize" {
         bindsym ctrl+j resize shrink height 12 px or 12 ppt
         bindsym ctrl+l resize grow width 12 px or 12 ppt
 
+        bindsym shift+h resize shrink width 1 px or 1 ppt
+        bindsym shift+k resize grow height 1 px or 1 ppt
+        bindsym shift+j resize shrink height 1 px or 1 ppt
+        bindsym shift+l resize grow width 1 px or 1 ppt
+
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 3 px or 3 ppt
         bindsym Down resize grow height 3 px or 3 ppt
@@ -242,6 +251,7 @@ bindsym mod1+ctrl+l exec sh $HOME/Wallpaper/lockscreen.sh
 #
 #bindsym $mod+Delete mode "$mode_system"
 bindsym $mod+Delete exec $HOME/.config/i3/scripts/system_menu
+bindsym $ctrl+alt+Delete exec i3-msg exit
 
 #e Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust high
@@ -260,38 +270,48 @@ bindsym XF86AudioNext exec playerctl next
 #Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-#bindsym $mod+space exec synapse
+bindsym $mod+space exec synapse
 
 # 全屏截图
-bindsym --release Print exec "scrot -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+bindsym --release Print exec "scrot -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && notify-send Whole\ Screen\ Screenshot"
 # 截取当前窗口
-bindsym --release $mod+Print exec "scrot -u -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+bindsym --release $mod+Print exec "scrot -u -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && notify-send Selected\ Window\ Screenshot"
 # 鼠标选择区域
-bindsym --release $mod+Shift+Print exec "scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
-# QQ 风格的截屏快捷键
-bindsym --release Control+Mod1+A exec "scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png"
+bindsym --release $mod+Shift+Print exec "notify-send Select\ Region && scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && notify-send Selected\ Region\ Screenshot"
 
-set $transparent #00404060
+
+# 全屏截图
+bindsym ctrl+Print exec "scrot -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && cp /tmp/screenshot.png $HOME/Pictures/ && notify-send Whole\ Screen\ Screenshot saved"
+# 截取当前窗口
+bindsym $mod+ctrl+Print exec "scrot -u -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png  && cp /tmp/screenshot.png $HOME/Pictures/ && notify-send Selected\ Window\ Screenshot saved"
+# 鼠标选择区域
+bindsym $mod+ctrl+Shift+Print exec "notify-send Select\ Region && scrot -s -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && cp /tmp/screenshot.png $HOME/Pictures/ && notify-send Selected\ Region\ Screenshot saved"
+
+set $transparent #f1f4f620
 bar {
   height 25
   position top
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   i3bar_command i3bar -t
   #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
-  font pango:Ubuntu,Fira Code, System San Francisco Display, FontAwesome, Terminus 10
+  font pango:Ubuntu,Fira Code,FontAwesome, Terminus 10
   tray_output primary
   colors {
-    #separator #AAAAAA
-    separator #FFFFFF
-    #background #1f2326
-    background $transparent
+    separator #AAAAAA
+    background #1f232630
     statusline #FFFFFF
     focused_workspace #9FCA56 #9FCA56 #151718
     active_workspace #DCCD69 #DCCD69 #151718
-    inactive_workspace #1f2326 #1f2326 #AAAAAA
+    inactive_workspace $transparent $transparent #000000
     urgent_workspace #CE4045 #CE4045 #FFFFFF
   }
 }
+
+# gaps
+#smart_gaps on
+smart_borders on
+gaps inner 15
+gaps outer 0
 
 ## Startup applications
 # Notification
@@ -299,10 +319,11 @@ exec_always killall -q notify-osd
 exec_always --no-startup-id dunst -config ~/.config/i3/dunst.conf
 
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
-exec xautolock -detectsleep -time 10 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 5 -notifier 'notify-send Going to Lock screen' 
-#exec xss-lock -- sh ~/Wallpaper/lockscreen.sh & 
+exec xautolock -detectsleep -time 10 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 5 -notifier 'notify-send Going to Lock screen'
+#exec xss-lock -- sh ~/Wallpaper/lockscreen.sh &
 
-exec sh ~/.conky/conky-startup.sh
+exec killall -KILL conky
+exec --no-startup-id sh ~/.conky/conky-startup.sh
 
 # Wallpaper
 exec sh $HOME/Wallpaper/wallpaper.sh
@@ -320,13 +341,7 @@ exec fluxgui
 
 exec_always --no-startup-id compton -b
 
-# gaps
-smart_gaps on
-smart_borders on
-gaps inner 10
-#gaps outer 2
-
-client.focused #0088CC #0088CC #ffffff #dddddd
-client.focused_inactive #333333 #333333 #888888 #292d2e
-client.unfocused #333333 #333333 #888888 #292d2e
-client.urgent #2f343a #900000 #ffffff #900000
+client.focused #4F99D3 #4F99D3 #151718 #9FCA56
+client.focused_inactive #9FCA56 #9FCA56 #151718 #A074C4
+client.unfocused #1f2326 #1f2326 #AAAAAA #A074C4
+client.urgent #CE4045 #CE4045 #FFFFFF #DCCD69
