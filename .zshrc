@@ -1,8 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:/opt/android-studio/bin:$PATH
-export PATH="$HOME/Android/tools:$PATH"
-export PATH="$HOME/Android/platform-tools:$PATH"
+export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$GOPATH/bin:/usr/lib/go/bin/:$HOME/.linuxbrew/bin
 
 #export TERMINAL=/usr/bin/pantheon-terminal
 
@@ -10,7 +9,6 @@ export PATH="$HOME/Android/platform-tools:$PATH"
 export ZSH=/home/iniz/.oh-my-zsh
 
 export TERM="xterm-256color"
-export GOPATH="/home/iniz/go/"
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -27,8 +25,9 @@ ZSH_THEME="bullet-train"
 #POWERLINE_RIGHT_A="exit-status-on-fail"
 
 # bullet-train theme options
-BULLETTRAIN_PROMPT_CHAR=":"
-#BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
+#BULLETTRAIN_PROMPT_CHAR=":"
+BULLETTRAIN_PROMPT_CHAR=""
+BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
 BULLETTRAIN_TIME_BG="yellow"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY="true"

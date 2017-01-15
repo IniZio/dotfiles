@@ -8,6 +8,12 @@ Environment:
 - [Nvim](https://neovim.io/) (literally future of vim, I not advanced enough to feel the awesome differences though)
 - [ZSH](http://www.zsh.org/) (better completion experience, better command history keeping, and oh-my-zsh!)
 
+Gadgets:
+
+- [Gcalcli](https://github.com/insanum/gcalcli)
+- [Conky](https://github.com/brndnmtthws/conky)
+- VS code
+
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/)
 
