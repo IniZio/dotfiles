@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$GOPATH/bin:/usr/lib/go/bin/:$HOME/.linuxbrew/bin
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$GOPATH/bin:/usr/lib/go/bin/:$HOME/.linuxbrew/bin:$HOME/node_modules/tern/bin
 
 #export TERMINAL=/usr/bin/pantheon-terminal
 
@@ -25,13 +25,22 @@ ZSH_THEME="bullet-train"
 #POWERLINE_RIGHT_A="exit-status-on-fail"
 
 # bullet-train theme options
+BULLETTRAIN_PROMPT_ORDER=(
+  git
+  context
+  dir
+)
 #BULLETTRAIN_PROMPT_CHAR=":"
 BULLETTRAIN_PROMPT_CHAR=""
 BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
-BULLETTRAIN_TIME_BG="yellow"
+BULLETTRAIN_TIME_BG="black"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
+BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR="yellow"
+BULLETTRAIN_GIT_BG="white"
+BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
 BULLETTRAIN_CONTEXT_DEFAULT_USER="iniz"
+BULLETTRAIN_IS_SSH_CLIENT=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +62,7 @@ BULLETTRAIN_CONTEXT_DEFAULT_USER="iniz"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
@@ -102,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -110,6 +119,11 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+if [ -n "$INSIDE_EMACS" ]; then
+    export EDITOR=emacsclient
+    unset zle_bracketed_paste  # This line
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -126,4 +140,5 @@ alias imos='ssh kcchowac@eea258.ee.ust.hk'
 figlet IniZio
 
 #. /etc/profile.d/z.sh
-#source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
+#source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+notica() { curl --data "d:$*" https://notica.us/6ozoK88n ; }

@@ -13,7 +13,9 @@ Gadgets:
 - [Gcalcli](https://github.com/insanum/gcalcli)
 - [Conky](https://github.com/brndnmtthws/conky)
 - VS code
+- Synapse (in ubuntu repo already)
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/)
+
 
