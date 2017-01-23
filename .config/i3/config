@@ -340,6 +340,7 @@ exec guake
 
 exec xbacklight -set 1
 #exec fluxgui
+exec redshift
 #exec insync start
 
 exec_always --no-startup-id compton -b
