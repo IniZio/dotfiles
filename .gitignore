@@ -6,6 +6,7 @@
 !/.zshrc
 /.oh-my-zsh/*
 !/.vimrc
+!/.spacemacs
 !/Wallpaper/*
 /Wallpaper/*.jpg
 /Wallpaper/*.png

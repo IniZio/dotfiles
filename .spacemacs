@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+    '(
+       yaml
      javascript
      html
      markdown
@@ -40,25 +41,43 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t)
      better-defaults
      emacs-lisp
-     git
+     (git :variables
+          git-gutter-use-fringe t)
+     github
      markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     org
+     (shell :variables
+            shell-default-height 80
+            shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     version-control
+     ;; version-control
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(vue-mode
-                                      editorconfig)
+                                      editorconfig
+                                      neotree
+                                      projectile
+                                      popup
+                                      autopair
+                                      exec-path-from-shell
+                                      hungry-delete
+                                      spaceline
+                                      atom-one-dark-theme
+                                      switch-buffer-functions
+                                       all-the-icons
+                                       powerline
+                                       flycheck-color-mode-line)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -132,13 +151,14 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai
-                         zenburn
+                         atom-one-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Fira Code Retina"
+   ;; "Source Code Pro"
+    dotspacemacs-default-font '("Fira Code"
                                :size 15
                                :weight normal
                                :width normal
@@ -296,7 +316,37 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (use-package vue-mode)
+  ;; default line spacing
+  (setq-default line-spacing 0)
+  (setq-default line-height 1)
+
+  (use-package all-the-icons)
+  (use-package powerline
+    :ensure t
+    :config
+    (powerline-center-evil-theme)
+
+    (use-package flycheck-color-mode-line
+      :ensure t
+      :config
+      (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+)
+  (use-package web-mode
+    :config
+    ;; (set-face-attribute 'web-mode-doctype-face nil :foreground "SlateBlue")
+    (set-face-attribute 'web-mode-html-tag-face nil :foreground "#F92672")
+    (set-face-attribute 'web-mode-html-tag-face)
+    ;; (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "red")
+    (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#A6E22E")
+    ;; (set-face-attribute 'web-mode-css-at-rule-face nil :foreground "Pink3")
+    ;; (set-face-attribute 'web-mode-variable-name-face nil :foreground "DarkGreen")
+    ;; (set-face-attribute 'web-mode-comment-face nil :foreground "red")
+    )
+  (use-package vue-mode
+    :config
+    ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
+    (setq mmm-submode-decoration-level 0)
+  )
   )
 
 (defun dotspacemacs/user-config ()
@@ -306,37 +356,111 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;;Keybindings
+  (global-set-key (kbd "C-`") 'spacemacs/default-pop-shell)
+  (global-set-key [f8] 'neotree-project-dir)
+  (setq-default tab-always-indent nil)
+
+  (setq-default indent-tabs-mode nil)
+  (setq-default default-tab-width 2)
+  (setq-default tab-width 2)
+  (setq-default c-basic-offset 2)
+  (setq indent-line-function 'insert-tab)
+
+  ;; hooks
+  (add-hook 'switch-buffer-functions 'neotree-resize-window)
+
+  (global-git-commit-mode t)
+  (global-hungry-delete-mode)
+
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+
+  (spacemacs/toggle-truncate-lines-on)
+  ;; Visual line navigation for textual modes
+  (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
+
+  (set-face-attribute 'font-lock-function-name-face nil :weight 'bold)
+  (set-face-attribute 'font-lock-type-face nil :weight 'semi-bold :slant 'italic)
+  ;; (set-face-attribute 'font-lock-string-face nil  :slant 'oblique :foreground '"forest green")
+
+  (web-mode)
+  ;; (set-face-attribute 'web-mode-doctype-face nil :foreground "SlateBlue")
+  (set-face-attribute 'web-mode-html-tag-face nil :foreground "#F92672")
+  ;; (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "red")
+  (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "#A6E22E")
+  ;; (set-face-attribute 'web-mode-css-at-rule-face nil :foreground "Pink3")
+  ;; (set-face-attribute 'web-mode-variable-name-face nil :foreground "DarkGreen")
+  ;; (set-face-attribute 'web-mode-comment-face nil :foreground "red")
+  (vue-mode)
+  (setq mmm-submode-decoration-level 0)
+
   ;; js2 ignore missing semicolon
   (setq js2-strict-missing-semi-warning nil)
   (setq js2-missing-semi-one-line-override nil)
 
-  (vue-mode)
 
   ;; tern
-  (add-to-list 'load-path "/home/iniz/tern/emacs")
+  (add-to-list 'load-path "~/tern/emacs")
   (autoload 'tern-mode "tern.el" nil t)
 
+  (editorconfig-mode 1)
+
   ;; show neotree
-  (require 'neotree)
-  (neotree-show)
+  ;; (require 'neotree')
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
-  (global-set-key [f8] 'neotree-project-dir)
+  (setq neo-create-file-auto-open t)
+  ;; (neotree-show)
+  (neotree-project-dir)
 
   (add-hook 'markdown-mode-hook 'pandoc-mode)
+  (editorconfig-mode 1)
   )
 
+(defun neotree-resize-window (&rest _args)
+  "Resize neotree window.
+https://github.com/jaypei/emacs-neotree/pull/110"
+  (interactive)
+  (neo-buffer--with-resizable-window
+   (let ((fit-window-to-buffer-horizontally t))
+     (fit-window-to-buffer))))
+
+(add-hook 'neo-change-root-hook #'neotree-resize-window)
+(add-hook 'neo-enter-hook #'neotree-resize-window)
+
 (defun neotree-project-dir ()
-"Open NeoTree using the git root."
-(interactive)
-(let ((project-dir (projectile-project-root))
-      (file-name (buffer-file-name)))
-  (neotree-toggle)
-  (if project-dir
-      (if (neo-global--window-exists-p)
-          (progn
-            (neotree-dir project-dir)
-            (neotree-find file-name)))
-    (message "Could not find git project root."))))
+  "Open NeoTree using the project root, using find-file-in-project,
+or the current buffer directory."
+  (interactive)
+  (let ((project-dir
+         (ignore-errors
+           ;;; Pick one: projectile or find-file-in-project
+           (projectile-project-root)
+           ;; (ffip-project-root)
+           ))
+        (file-name (buffer-file-name))
+        (neo-smart-open t))
+    (if (and (fboundp 'neo-global--window-exists-p)
+             (neo-global--window-exists-p))
+        (neotree-hide)
+      (progn
+        (neotree-show)
+        (if project-dir
+            (neotree-dir project-dir))
+        (if file-name
+            (neotree-find file-name)))))
+  )
+
+(defun init-smooth-scroll ()
+  (use-package smooth-scroll
+    :defer
+    :init
+    (progn
+      (require 'smooth-scroll)
+      (smooth-scroll-mode 1)
+      (setq smooth-scroll/vscroll-step-size 3))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -345,17 +469,16 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+  '(custom-safe-themes
+     (quote
+       ("51e228ffd6c4fff9b5168b31d5927c27734e82ec61f414970fc6bcce23bc140d" "08b8807d23c290c840bbb14614a83878529359eaba1805618b3be7d61b0b0a32" "f04122bbc305a202967fa1838e20ff741455307c2ae80a26035fbf5d637e325f" "73a13a70fd111a6cd47f3d4be2260b1e4b717dbf635a9caee6442c949fad41cd" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(evil-want-Y-yank-to-eol nil)
- '(exec-path
-   (quote
-    ("/home/iniz/.local/share/umake/bin/" "/home/iniz/bin/" "/home/iniz/.local/bin/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/sbin/" "/usr/bin/" "/sbin/" "/bin/" "/usr/games/" "/usr/local/games/" "/snap/bin/" "/usr/lib/jvm/java-8-oracle/bin/" "/usr/lib/jvm/java-8-oracle/db/bin/" "/usr/lib/jvm/java-8-oracle/jre/bin/" "/home/iniz/bin/" "/usr/local/bin/" "/home/iniz/go/bin/" "/usr/lib/go/bin/" "/home/iniz/.linuxbrew/bin/" "/home/iniz/node_modules/tern/bin/" "/usr/lib/emacs/24.5/x86_64-linux-gnu/" ""))))
+  '(exec-path
+     (quote
+       ("/home/iniz/.local/share/umake/bin/" "/home/iniz/bin/" "/home/iniz/.local/bin/" "/usr/local/sbin/" "/usr/local/bin/" "/usr/sbin/" "/usr/bin/" "/sbin/" "/bin/" "/usr/games/" "/usr/local/games/" "/snap/bin/" "/usr/lib/jvm/java-8-oracle/bin/" "/usr/lib/jvm/java-8-oracle/db/bin/" "/usr/lib/jvm/java-8-oracle/jre/bin/" "/home/iniz/bin/" "/usr/local/bin/" "/home/iniz/go/bin/" "/usr/lib/go/bin/" "/home/iniz/.linuxbrew/bin/" "/home/iniz/node_modules/tern/bin/" "/usr/lib/emacs/24.5/x86_64-linux-gnu/" ""))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
