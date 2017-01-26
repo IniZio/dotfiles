@@ -1,14 +1,16 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$GOPATH/bin:/usr/lib/go/bin/:$HOME/.linuxbrew/bin:$HOME/node_modules/tern/bin
 
 #export TERMINAL=/usr/bin/pantheon-terminal
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/iniz/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 export TERM="xterm-256color"
+# Grep - green
+export GREP_COLOR='1;32'
+
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -134,11 +136,16 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias scribble='cd /home/iniz/Source/thoughts/posts; npm run post'
+alias scribble='cd ~/magic/thoughts/posts; npm run post'
+alias change-wallpaper='sh ~/Wallpaper/wallpaper.sh'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
+alias analax='ssh -i analax.pem ubuntu@ec2-13-112-14-120.ap-northeast-1.compute.amazonaws.com'
+
+# systemctl aliases
+alias sc='systemctl'
+alias sc-services='systemctl list-units --type=service | grep --color -E "active running|$"' ﻿
 
 figlet IniZio
 
 #. /etc/profile.d/z.sh
 #source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-notica() { curl --data "d:$*" https://notica.us/6ozoK88n ; }

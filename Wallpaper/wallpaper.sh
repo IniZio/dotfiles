@@ -21,5 +21,7 @@ gsettings set org.gnome.desktop.background picture-uri '"file://'$HOME'/Wallpape
 
 gsettings set org.gnome.desktop.screensaver picture-uri '"file://'$HOME'/Wallpaper/wallpaper.jpg"'
 
+feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
+
 #Cleanup
 #rm $HOME/Wallpaper/wall.jpg
