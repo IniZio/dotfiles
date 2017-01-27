@@ -149,3 +149,6 @@ figlet IniZio
 
 #. /etc/profile.d/z.sh
 #source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export NVM_DIR="/home/iniz/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -11,6 +11,7 @@
 /Wallpaper/*.jpg
 /Wallpaper/*.png
 !/.config/i3/*
+!/.config/i3/scripts/*.*
 !/.config/nvim/init.vim
 !/.config/nyaovim/nyaovimrc.html
 !/.conky/*

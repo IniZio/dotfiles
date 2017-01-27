@@ -163,7 +163,7 @@ values."
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     ;; "Source Code Pro"
     dotspacemacs-default-font '("Fira Code"
-                                 :size 14
+                                 :size 15
                                  :weight normal
                                  :width normal
                                  :powerline-scale 1.1)
@@ -384,7 +384,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;;Keybindings
   (global-set-key (kbd "C-`") 'spacemacs/default-pop-shell)
-  (global-set-key [f9] 'neotree-project-dir)
+  (global-set-key [f8] 'neotree-project-dir)
   (global-git-commit-mode t)
 
   (setq-default tab-always-indent nil)
@@ -441,7 +441,7 @@ you should place your code here."
 
   ;; show neotree
   ;; (require 'neotree')
-  (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
+  (setq neo-theme (if (display-graphic-p) 'default 'nerd))
   (setq neo-smart-open t)
   (setq neo-create-file-auto-open t)
 
