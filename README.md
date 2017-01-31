@@ -32,7 +32,6 @@ Gadgets:
 - Redshift (in ubuntu repo already)
 - Insync
 - Take a Break
-- 
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/)
