@@ -20,7 +20,7 @@ own_window_type override
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 minimum_size 250 250
-maximum_width 250
+maximum_width 350
 draw_shades yes
 draw_outline no
 draw_borders no
@@ -42,8 +42,8 @@ own_window_colour 000000
 TEXT
 #${image ./bordo.png -p 0,0 -s 360x1060}
 
-${font Open Sans Light:pixelsize=80}${alignr}${time %H:%M}${font}
-${font Open Sans Light:pixelsize=20}${alignr}${time %d.%m.%Y}${font}
+${font :pixelsize=80}${alignr}${time %I:%M}${font :pixelsize=20}${time %p}${font}${font}
+${font :pixelsize=20}${alignr}${time %d.%b.%Y (%a)}${font}
 
 # AGENDA
 ${font FreeSans:Bold:size=10}${color grey}AGENDA ${hr 2}$color${font}

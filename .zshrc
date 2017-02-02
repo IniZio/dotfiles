@@ -36,6 +36,8 @@ BULLETTRAIN_PROMPT_ORDER=(
 BULLETTRAIN_PROMPT_CHAR=""
 BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
 BULLETTRAIN_TIME_BG="black"
+BULLETTRAIN_DIR_BG="39"
+BULLETTRAIN_DIR_FG="white"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR="yellow"
@@ -136,10 +138,12 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias scribble='cd ~/magic/thoughts/posts; npm run post'
+alias scribble='cd ~/thoughts/posts; npm run post'
 alias change-wallpaper='sh ~/Wallpaper/wallpaper.sh'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
-alias analax='ssh -i analax.pem ubuntu@ec2-13-112-14-120.ap-northeast-1.compute.amazonaws.com'
+alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-14-120.ap-northeast-1.compute.amazonaws.com'
+alias emacs='emacs -nw'
+alias copy='xclip -sel clip'
 
 # systemctl aliases
 alias sc='systemctl'

@@ -1,10 +1,10 @@
 #!/bin/bash
-while [ "$select" != "Logout" -a "$select" != "Suspend" -a "$select" != "Reboot" -a "$select" != "Shutdown" ]; do
-      select=$(echo -e 'Logout\nSuspend\nReboot\nShutdown' | LANG=en_US.UTF-8 dmenu -nb '#2f343f' -nf '#f3f4f5' -sb '#9575cd' -sf '#f3f4f5' -fn '-*-*-medium-r-normal-*-*-*-*-*-*-100-*-*' -i -p "System Menu")
+while [ "$select" != "Logout" -a "$select" != "Suspend" -a "$select" != "Restart" -a "$select" != "Shutdown" ]; do
+      select=$(echo -e 'Logout\nSuspend\nRestart\nShutdown' | LANG=en_US.UTF-8 dmenu -nb '#2f343f' -nf '#f3f4f5' -sb '#9575cd' -sf '#f3f4f5' -fn '-*-*-medium-r-normal-*-*-*-*-*-*-100-*-*' -i -p "System Menu")
       [ -z "$select" ] && exit 0
 done
 [ "$select" = "Logout" ] && i3-msg exit
 [ "$select" = "Suspend" ] && sh $HOME/Wallpaper/lockscreen.sh && systemctl syspend
-[ "$select" = "Reboot" ] && systemctl reboot
+[ "$select" = "Restart" ] && systemctl reboot
 [ "$select" = "Shutdown" ] && systemctl poweroff -i
 exit 0
