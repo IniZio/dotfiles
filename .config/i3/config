@@ -176,7 +176,7 @@ for_window [class="Franz"] floating enable
 for_window [class="file-roller"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="netease-cloud-music"] floating enable
-for_window [title="Timetable.png"] floating enable,move container to workspace $workspace1
+for_window [title="Spring_sem.jpeg"] floating enable,move container to workspace $workspace1
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="GitKraken"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -336,7 +336,7 @@ exec --no-startup-id synclient VertTwoFingerScroll=1 HorizTwoFingerScroll=1
 exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=-300
 exec --no-startup-id synclient NaturalScrolling=0
 exec --no-startup-id synclient MaxTapTime=0
-exec xautolock -detectsleep -time 10 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 5 -notifier 'notify-send Going to Lock screen'
+exec xautolock -detectsleep -time 5 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 10 -notifier 'notify-send Going to Lock screen'
 #exec xss-lock -- sh ~/Wallpaper/lockscreen.sh &
 
 exec killall -KILL conky
@@ -348,13 +348,13 @@ exec_always sh $HOME/Wallpaper/wallpaper.sh
 #exec albert
 exec franz
 #exec eog $HOME/Google\ Drive/UST/Timetable.png
-#exec /opt/takeabreak/takeabreak/takeabreak_run
+exec eog $HOME/Pictures/Spring_sem.jpeg
 exec fcitx
 exec guake
 
 exec light -S 1
-#exec fluxgui
-exec redshift
+exec fluxgui
+#exec redshift
 #exec insync start
 
 exec --no-startup-id gnome-keyring-daemon
@@ -364,8 +364,9 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
 exec --no-startup-id synclient
-#killall -KILL takeabreak
-exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -toggle
+exec --no-startup-id xinput -set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
+exec --no-startup-id xinput -set-prop 10 "Synaptics Palm Detection" 1
+exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -on
 
 client.focused #0088CC #0088CC #ffffff #dddddd
 client.focused_inactive #333333 #333333 #888888 #292d2e

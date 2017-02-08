@@ -387,6 +387,7 @@ you should place your code here."
   ;;Keybindings
   (global-set-key (kbd "C-`") 'spacemacs/default-pop-shell)
   (global-set-key [f8] 'neotree-project-dir)
+  (global-set-key [f9] 'neotree-toggle)
   (global-git-commit-mode t)
 
   (setq-default tab-always-indent nil)

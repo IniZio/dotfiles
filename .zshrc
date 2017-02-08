@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
+export NPM_TOKEN=""
+export NVM_DIR="~/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 #export TERMINAL=/usr/bin/pantheon-terminal
 
@@ -141,9 +144,12 @@ alias cls="clear"
 alias scribble='cd ~/thoughts/posts; npm run post'
 alias change-wallpaper='sh ~/Wallpaper/wallpaper.sh'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
-alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-14-120.ap-northeast-1.compute.amazonaws.com'
+alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
+alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
+alias rm='rm-p'
+alias orient='xrandr --output eDP-1  --rotate normal'
 
 # systemctl aliases
 alias sc='systemctl'
