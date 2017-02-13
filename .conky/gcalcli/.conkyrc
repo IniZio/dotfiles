@@ -11,8 +11,8 @@ draw_outline no
 draw_shades yes
 use_xft yes
 #xftfont DejaVu Sans Mono:size=12
-xftfont Source Code Pro:size=10
-#xftfont Fira Code:size=10
+#xftfont Source Code Pro:size=12
+xftfont Fira Code:size=10
 gap_x 0
 gap_y 0
 minimum_size 5 5
@@ -39,7 +39,7 @@ own_window_argb_value 38
 own_window_argb_visual yes
 own_window_colour 000000
 TEXT
-${execpi 300 gcalcli --conky calw 3 today --calendar digit4free@gmail.com --color_date 'white' -color_now_marker green --detail_location |
+${execpi 300 gcalcli --conky calw 3 today --color_date 'white' -color_now_marker green --detail_location |
     sed -e 's/(0\x71(B/-/g' \
         -e 's/(0\x78(B/|/g' \
         -e 's/(0\x6A(B/-/g' \
