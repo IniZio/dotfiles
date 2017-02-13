@@ -29,8 +29,8 @@ set $urgent-bg-color     #E53935
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:FontAwesome, System San Francisco Display, Ubuntu 10
-font xft: Ubuntu 10
+font pango:FontAwesome, SFNS Display, Ubuntu 10
+font xft: SFNS Display 10
 #font pango:Fira Code, FontAwesome 9
 
 # thin borders
@@ -60,7 +60,7 @@ bindsym mod1+F4 kill
 bindsym $mod+Shift+22 exec systemctl restart lightdm.service
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec LANG=en_US.UTF-8 dmenu_run
+bindsym $mod+d exec LANG=en_US.UTF-8 dmenu_run -fn 'SFNS Display-12' -nb '#2f343f' -nf '#f3f4f5' -sb '#9575cd' -sf '#f3f4f5'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -135,14 +135,15 @@ bindsym $mod+a focus parent
 set $workspace1 "1:  Sticky"
 set $workspace2 "2:  Main"
 set $workspace3 "3:  Support"
-set $workspace4 "4:  Trash"
+set $workspace4 "4:  Etc."
+set $workspace5 "5:  Trash"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -156,7 +157,7 @@ bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
 bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -177,6 +178,8 @@ for_window [class="file-roller"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="netease-cloud-music"] floating enable
 for_window [title="Spring_sem.jpeg"] floating enable,move container to workspace $workspace1
+for_window [class="Cumulus"] floating enable,move container to workspace $workspace1
+for_window [class="Temps"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="GitKraken"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -184,14 +187,14 @@ for_window [class="Pantheon-*"] floating enable
 for_window [class="Alarm-clock-applet"] floating enable
 
 for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace1
-for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
+for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace5
 #for_window [class="gnome-*"] floating enable
 for_window [class="Tor Browser"] floating enable, move container to workspace $workspace1
 for_window [title="Pages Unresponsive"] floating enable
 no_focus [class="fcitx"]
 
 # default workspaces
-assign [class="Steam"] $workspace4
+assign [class="Steam"] $workspace5
 assign [class="Franz"] $workspace1
 
 # reload the configuration file
@@ -360,6 +363,7 @@ exec fluxgui
 exec --no-startup-id gnome-keyring-daemon
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id nm-applet
+exec --no-startup-id temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
