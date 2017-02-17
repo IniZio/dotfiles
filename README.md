@@ -1,11 +1,11 @@
-# dotfiles
-My Linux dotfiles
+# .files
 
 Environment:
 
-- Ubuntu 16.10 (Yay i broke my elementary os)
+- Ubuntu 16.10 (Yay i broke my elementary os,,,)
 - [i3wm](https://i3wm.org) (Love the Vim-like navigation, I use hjkl instead of default jkl; because of habits)
-- Spacemacs (Used more frequently than nvim)
+- VS Code (Dont mess up its not the fked up Visual Studio. Used mostly frequently among my editors)
+- Spacemacs (Used more frequently than nvim recently)
 - [Nvim](https://neovim.io/) (literally future of vim, I not advanced enough to feel the awesome differences though)
 - [ZSH](http://www.zsh.org/) (better completion experience, better command history keeping, and oh-my-zsh!)
 
@@ -20,7 +20,7 @@ Gadgets:
 - tern
 - Netease Music: :+1:
 - Fira Code font: Best Programming font
-- Hacks font: Not as eye-candy also as Fira Code, but default installed on Ubuntu
+- [Powerline's Mono fonts](https://github.com/powerline/fonts): All nice fonts for terminal e.g. Hack, SourceCode Pro, RobotMono
 - Typora: Best Markdown writer
 - Guake terminal: Drop-down terminal
 - Fcitx: Enter chinese

@@ -1,10 +1,11 @@
 #!/bin/bash
-while [ "$select" != "Logout" -a "$select" != "Suspend" -a "$select" != "Restart" -a "$select" != "Shutdown" ]; do
-      select=$(echo -e 'Logout\nSuspend\nRestart\nShutdown' | LANG=en_US.UTF-8 dmenu -nb '#2f343f' -nf '#f3f4f5' -sb '#9575cd' -sf '#f3f4f5' -fn 'SFNS Display-14' -i -p "System Menu")
+while [ "$select" != "logout" -a "$select" != "suspend" -a "$select" != "restart" -a "$select" != "shutdown" ]; do
+      #select=$(echo -e 'logout\nsuspend\nrestart\nshutdown' | LANG=en_US.UTF-8 dmenu -nb '#2f343f' -nf '#f3f4f5' -sb '#9575cd' -sf '#f3f4f5' -fn 'SFNS Display-14' -i -p "System Menu")
+      select=$(echo -e 'logout\nsuspend\nrestart\nshutdown' | rofi -dmenu)
       [ -z "$select" ] && exit 0
 done
-[ "$select" = "Logout" ] && i3-msg exit
-[ "$select" = "Suspend" ] && sh $HOME/Wallpaper/lockscreen.sh && systemctl syspend
-[ "$select" = "Restart" ] && systemctl reboot
-[ "$select" = "Shutdown" ] && systemctl poweroff -i
+[ "$select" = "logout" ] && i3-msg exit
+[ "$select" = "suspend" ] && sh $HOME/Wallpaper/lockscreen.sh && systemctl syspend
+[ "$select" = "restart" ] && systemctl reboot
+[ "$select" = "shutdown" ] && systemctl poweroff -i
 exit 0

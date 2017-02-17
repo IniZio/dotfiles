@@ -69,6 +69,10 @@ bindsym $mod+d exec LANG=en_US.UTF-8 dmenu_run -fn 'SFNS Display-12' -nb '#2f343
 # start j4-dmenu
 #bindsym $mod+d exec j4-dmenu-desktop
 
+bindsym $mod+b exec --no-startup-id rofi -show window
+bindsym $mod+p exec --no-startup-id rofi -show run
+bindsym $mod+g exec --no-startup-id rofi -switchers "file:~/rofi-file-browser.sh" -show file
+
 # change focus
 bindsym mod1+Shift+tab focus left
 bindsym $mod+h focus left
@@ -164,7 +168,7 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-#for_window [class=".*"] title_format " %title"
+for_window [class=".*"] title_format " %title"
 for_window [class="^.*"] border pixel 1
 
 # floating window
@@ -177,7 +181,7 @@ for_window [class="Franz"] floating enable
 for_window [class="file-roller"] floating enable
 for_window [class="Nautilus"] floating enable
 for_window [class="netease-cloud-music"] floating enable
-for_window [title="Spring_sem.jpeg"] floating enable,move container to workspace $workspace1
+for_window [title="Timetable.jpeg"] floating enable,move container to workspace $workspace1
 for_window [class="Cumulus"] floating enable,move container to workspace $workspace1
 for_window [class="Temps"] floating enable
 for_window [window_role="pop-up"] floating enable
@@ -283,7 +287,7 @@ bindsym XF86AudioNext exec playerctl next
 #Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-bindsym $mod+space exec synapse
+#bindsym $mod+space exec synapse
 
 # 全屏截图
 bindsym --release Print exec "scrot -b -m /tmp/screenshot.png && xclip -selection clipoard -t 'image/png' /tmp/screenshot.png && notify-send Whole\ Screen\ Screenshot"
@@ -348,10 +352,9 @@ exec --no-startup-id sh ~/.conky/conky-startup.sh
 # Wallpaper
 exec_always sh $HOME/Wallpaper/wallpaper.sh
 #exec_always --no-startup-id feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
-#exec albert
 exec franz
 #exec eog $HOME/Google\ Drive/UST/Timetable.png
-exec eog $HOME/Pictures/Spring_sem.jpeg
+exec eog $HOME/Pictures/Timetable.jpeg
 exec fcitx
 exec guake
 
@@ -362,17 +365,18 @@ exec fluxgui
 
 exec --no-startup-id gnome-keyring-daemon
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id albert
 exec --no-startup-id nm-applet
 exec --no-startup-id temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
 exec --no-startup-id synclient
-exec --no-startup-id xinput -set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
-exec --no-startup-id xinput -set-prop 10 "Synaptics Palm Detection" 1
+exec --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Two-Finger Scrolling" 1 1
+exec --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Palm Detection" 1
 exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -on
 
-client.focused #0088CC #0088CC #ffffff #dddddd
+client.focused #FFCC00 #FFCC00 #ffffff #dddddd
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000

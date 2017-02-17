@@ -150,13 +150,14 @@ alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
 alias rm='rm-p'
+alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
 
 # systemctl aliases
 alias sc='systemctl'
 alias sc-services='systemctl list-units --type=service | grep --color -E "active running|$"' ﻿
 
-figlet IniZio
+figlet Ini Zio
 
 #. /etc/profile.d/z.sh
 #source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
