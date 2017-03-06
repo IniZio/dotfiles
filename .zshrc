@@ -92,7 +92,7 @@ BULLETTRAIN_IS_SSH_CLIENT=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z)
+plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -143,15 +143,17 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
 alias scribble='cd ~/thoughts/posts; npm run post'
-alias change-wallpaper='sh ~/Wallpaper/wallpaper.sh'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
 alias rm='rm-p'
+alias wallpaper='sh ~/Wallpaper/wallpaper.sh'
 alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
+
+eval "$(thefuck --alias fk)"
 
 # systemctl aliases
 alias sc='systemctl'

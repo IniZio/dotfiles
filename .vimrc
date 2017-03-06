@@ -4,6 +4,8 @@
 " dotspacevim/auto-install {{{
 " Automatic installation of spacevim.
 
+set number
+
 if empty(glob('~/.vim/autoload/spacevim.vim'))
     silent !curl -sSfLo ~/.vim/autoload/spacevim.vim --create-dirs
           \ https://raw.githubusercontent.com/ctjhoa/spacevim/master/autoload/spacevim.vim

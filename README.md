@@ -2,7 +2,7 @@
 
 Environment:
 
-- Ubuntu 16.10 (Yay i broke my elementary os,,,)
+- Ubuntu 16.10 (Yay i broke my elementary os...)(Yay again i broken my ubuntu also, not rly tho i accidentally cleaned my home partition this time...)
 - [i3wm](https://i3wm.org) (Love the Vim-like navigation, I use hjkl instead of default jkl; because of habits)
 - VS Code (Dont mess up its not the fked up Visual Studio. Used mostly frequently among my editors)
 - Spacemacs (Used more frequently than nvim recently)
@@ -12,18 +12,18 @@ Environment:
 Gadgets:
 
 - [Gcalcli](https://github.com/insanum/gcalcli) : google calendar on CLI
-- [Conky](https://github.com/brndnmtthws/conky): I used it for showing gcalcli on desktop
+- TLP: save battery
+- [Conky](https://github.com/brndnmtthws/conky): I use it for showing gcalcli on desktop
 - VS code: Not as eye-candy as Atom, but better in many ways
 - Synapse (in ubuntu repo already): Unity's Alt-F2 alternative in i3wm
 - Postman
 - [Franz](http://meetfranz.com/): Unify all your chat clients
-- tern
 - Netease Music: :+1:
 - Fira Code font: Best Programming font
-- [Powerline's Mono fonts](https://github.com/powerline/fonts): All nice fonts for terminal e.g. Hack, SourceCode Pro, RobotMono
+- [Powerline's Mono fonts](https://github.com/powerline/fonts): All nice fonts for terminal e.g. Hack, SourceCode Pro, RobotoMono
 - Typora: Best Markdown writer
 - Guake terminal: Drop-down terminal
-- Fcitx: Enter chinese
+- Fcitx: Enter chinese(*cough* i only know pinyin...)
 - Gitkraken: Best Git GUI client
 - Audacity: Record stuff at times
 - NaSC: Not as powerful as WolframAlpha, but well sometimes you have to be offline..
@@ -32,6 +32,7 @@ Gadgets:
 - Insync: sync your google drive
 - Take a Break: er... yea take a break
 - [Temps](https://jackd248.github.io/temps/): Beautiful weather applet
+- Genymotion: faster emulator than Android AVD (only free for personal use with limited features though)
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions

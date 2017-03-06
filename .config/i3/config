@@ -174,8 +174,10 @@ for_window [class="^.*"] border pixel 1
 # floating window
 for_window [title="Guake!"] floating enable #, move container to workspace $workspace2
 for_window [title="albert"] floating enable, border pixel 0 #, move container to workspace $workspace2
+for_window [class="Cerebro"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [title="Zazu"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [title="synapse"] floating enable, border pixel 0 #, move container to workspace $workspace2
+for_window [title="Android Emulator"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [class="Steam"] floating enable
 for_window [class="Franz"] floating enable
 for_window [class="file-roller"] floating enable
@@ -271,9 +273,9 @@ bindsym ctrl+mod1+Delete exec i3-msg exit
 bindsym alt+space exec zazu
 
 #e Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust high
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust low
-bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/volume_adjust mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume-adjust high
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/volume-adjust low
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/volume-adjust toggle
 
 #
 ## Sreen brightness controls
@@ -329,7 +331,7 @@ bar {
 # gaps
 #smart_gaps on
 smart_borders on
-gaps inner 10
+gaps inner 8
 gaps outer 0
 
 ## Startup applications
@@ -352,20 +354,21 @@ exec --no-startup-id sh ~/.conky/conky-startup.sh
 # Wallpaper
 exec_always sh $HOME/Wallpaper/wallpaper.sh
 #exec_always --no-startup-id feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
-exec franz
+exec Franz
 #exec eog $HOME/Google\ Drive/UST/Timetable.png
-exec eog $HOME/Pictures/Timetable.jpeg
+#exec eog $HOME/Pictures/Timetable.jpeg
 exec fcitx
 exec guake
 
 exec light -S 1
-exec fluxgui
+#exec fluxgui
 #exec redshift
 #exec insync start
 
 exec --no-startup-id gnome-keyring-daemon
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id albert
+#exec --no-startup-id albert
+exec --no-startup-id cerebro
 exec --no-startup-id nm-applet
 exec --no-startup-id temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
