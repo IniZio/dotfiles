@@ -448,8 +448,8 @@ you should place your code here."
   (setq neo-smart-open t)
   (setq neo-create-file-auto-open t)
 
-  (neotree-show)
-  (neotree-dir "~/Source")
+  ;; (neotree-show)
+  (neotree-dir "~/magic")
   ;; (neotree-project-dir)
 
   (add-hook 'markdown-mode-hook 'pandoc-mode)

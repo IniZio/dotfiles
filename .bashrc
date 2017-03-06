@@ -174,12 +174,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 figlet IniZio
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$HOME/android-studio/bin
-
-alias THOUGHTS='cd /home/iniz/Source/thoughts/posts'
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
-
-export NVM_DIR="/home/iniz/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

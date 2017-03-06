@@ -2,11 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
 export EDITOR=/usr/bin/emacs
+export ANDROID_HOME="$HOME/Android/Sdk"
 export NPM_TOKEN=""
-export NVM_DIR="~/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-#export TERMINAL=/usr/bin/pantheon-terminal
+export TERMINAL=/usr/bin/gnome-terminal
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -32,9 +33,9 @@ ZSH_THEME="bullet-train"
 
 # bullet-train theme options
 BULLETTRAIN_PROMPT_ORDER=(
-  git
-  context
   dir
+  context
+  git
 )
 #BULLETTRAIN_PROMPT_CHAR=":"
 BULLETTRAIN_PROMPT_CHAR=""
@@ -44,7 +45,7 @@ BULLETTRAIN_DIR_BG="39"
 BULLETTRAIN_DIR_FG="white"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
-BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR="yellow"
+BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR="45"
 BULLETTRAIN_GIT_BG="white"
 BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
 BULLETTRAIN_CONTEXT_DEFAULT_USER="iniz"
@@ -92,7 +93,7 @@ BULLETTRAIN_IS_SSH_CLIENT=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z zsh-autosuggestions)
+plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z zsh-autosuggestions zsh-better-npm-completion)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -149,11 +150,16 @@ alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
 alias rm='rm-p'
-alias wallpaper='sh ~/Wallpaper/wallpaper.sh'
+alias wallpaper='~/Wallpaper/wallpaper.sh'
 alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
+alias all='all-nvm'
 
 eval "$(thefuck --alias fk)"
+
+# conveniently share file with transfer.sh
+transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
 
 # systemctl aliases
 alias sc='systemctl'
@@ -161,30 +167,24 @@ alias sc-services='systemctl list-units --type=service | grep --color -E "active
 
 figlet Ini Zio
 
-#. /etc/profile.d/z.sh
-#source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-export NVM_DIR="/home/iniz/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-local node_version="$(nvm version)"
-local nvmrc_path="$(nvm_find_nvmrc)"
-
-if [ -n "$nvmrc_path" ]; then
-local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-if [ "$nvmrc_node_version" = "N/A" ]; then
-nvm install
-elif [ "$nvmrc_node_version" != "$node_version" ]; then
-nvm use
-fi
-elif [ "$node_version" != "$(nvm version default)" ]; then
-echo "Reverting to nvm default version"
-nvm use default
-fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+## place this after nvm initialization!
+#autoload -U add-zsh-hook
+#load-nvmrc() {
+#local node_version="$(nvm version)"
+#local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#if [ -n "$nvmrc_path" ]; then
+#local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#if [ "$nvmrc_node_version" = "N/A" ]; then
+#nvm install
+#elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#nvm use
+#fi
+#elif [ "$node_version" != "$(nvm version default)" ]; then
+#echo "Reverting to nvm default version"
+#nvm use default
+#fi
+#}
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
