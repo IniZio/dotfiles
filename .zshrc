@@ -41,7 +41,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 BULLETTRAIN_PROMPT_CHAR=""
 BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
 BULLETTRAIN_TIME_BG="black"
-BULLETTRAIN_DIR_BG="39"
+BULLETTRAIN_DIR_BG="33"
 BULLETTRAIN_DIR_FG="white"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
 BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
@@ -143,7 +143,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias scribble='cd ~/thoughts/posts; npm run post'
+alias scribble='cd ~/Thoughts/posts; npm run post'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
@@ -160,6 +160,9 @@ eval "$(thefuck --alias fk)"
 # conveniently share file with transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+
+# detach process from terminal
+detach () { eval "$*" &> /dev/null &}
 
 # systemctl aliases
 alias sc='systemctl'
