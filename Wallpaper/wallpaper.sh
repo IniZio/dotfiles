@@ -9,6 +9,8 @@ URL='https://source.unsplash.com/random/1920x1080'
 #curl -s -o $HOME/Wallpaper/wall.jpg -L https://source.unsplash.com/random/1920x1080 
 #curl -s -o $HOME/Wallpaper/wall.jpg -L $URL
 
+python $HOME/Wallpaper/Daily-Reddit-Wallpaper/change_wallpaper_reddit.py
+
 randWall="$(find $HOME/Wallpaper -type f | grep '.jpg' | shuf -n 1)"
 cp "$randWall" $HOME/Wallpaper/wall.jpg
 
