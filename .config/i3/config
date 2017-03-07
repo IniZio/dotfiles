@@ -378,7 +378,7 @@ exec_always --no-startup-id compton -b
 exec --no-startup-id synclient
 exec --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Palm Detection" 1
-exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -on
+exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -toggle
 
 client.focused #FFCC00 #FFCC00 #ffffff #dddddd
 client.focused_inactive #333333 #333333 #888888 #292d2e
