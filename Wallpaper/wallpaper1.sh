@@ -7,10 +7,7 @@ URL='https://source.unsplash.com/random/1920x1080'
 
 #curl -s -o $HOME/Wallpaper/wall.jpg -L https://unsplash.it/1920/1080/\?random
 #curl -s -o $HOME/Wallpaper/wall.jpg -L https://source.unsplash.com/random/1920x1080 
-#curl -s -o $HOME/Wallpaper/wall.jpg -L $URL
-
-randWall="$(find $HOME/Wallpaper -type f | grep '.jpg' | shuf -n 1)"
-cp "$randWall" $HOME/Wallpaper/wall.jpg
+curl -s -o $HOME/Wallpaper/wall.jpg -L $URL
 
 #Blur Image
 #convert $HOME/Wallpaper/wall.jpg -blur 0x4 $HOME/Wallpaper/wall.jpg
@@ -20,10 +17,11 @@ cp "$randWall" $HOME/Wallpaper/wall.jpg
 cp $HOME/Wallpaper/wall.jpg $HOME/Wallpaper/wallpaper.jpg
 
 #Set Wallpaper
-#gsettings set org.gnome.desktop.background picture-uri '"file://'$HOME'/Wallpaper/wallpaper.jpg"'
+gsettings set org.gnome.desktop.background picture-uri '"file://'$HOME'/Wallpaper/wallpaper.jpg"'
 
-#gsettings set org.gnome.desktop.screensaver picture-uri '"file://'$HOME'/Wallpaper/wallpaper.jpg"'
+gsettings set org.gnome.desktop.screensaver picture-uri '"file://'$HOME'/Wallpaper/wallpaper.jpg"'
 
-feh --bg-scale "$HOME/Wallpaper/wallpaper.jpg"
+feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
+
 #Cleanup
 #rm $HOME/Wallpaper/wall.jpg
