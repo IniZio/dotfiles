@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
-export EDITOR=/usr/bin/emacs
+export EDITOR="/usr/bin/vim"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"
@@ -33,20 +33,20 @@ ZSH_THEME="bullet-train"
 
 # bullet-train theme options
 BULLETTRAIN_PROMPT_ORDER=(
-  dir
   context
   git
+  dir
 )
 #BULLETTRAIN_PROMPT_CHAR=":"
 BULLETTRAIN_PROMPT_CHAR=""
 BULLETTRAIN_PROMPT_SEPARATE_LINE="false"
 BULLETTRAIN_TIME_BG="black"
-BULLETTRAIN_DIR_BG="33"
-BULLETTRAIN_DIR_FG="white"
+BULLETTRAIN_DIR_BG="39"
+BULLETTRAIN_DIR_FG="15"
 BULLETTRAIN_DIR_CONTEXT_SHOW="true"
-BULLETTRAIN_GIT_COLORIZE_DIRTY="true"
+BULLETTRAIN_GIT_COLORIZE_DIRTY="false"
 BULLETTRAIN_GIT_COLORIZE_DIRTY_BG_COLOR="45"
-BULLETTRAIN_GIT_BG="white"
+BULLETTRAIN_GIT_BG="15"
 BULLETTRAIN_GIT_PROMPT_CMD=\${\$(git_prompt_info)//\\//\ \ }
 BULLETTRAIN_CONTEXT_DEFAULT_USER="iniz"
 BULLETTRAIN_IS_SSH_CLIENT=""
@@ -143,7 +143,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias scribble='cd ~/Thoughts/posts; npm run post'
+alias scribble='cd ~/Thoughts; npm run post'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
@@ -154,6 +154,7 @@ alias wallpaper='~/Wallpaper/wallpaper.sh'
 alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
 alias all='all-nvm'
+alias apt='apt-fast'
 
 eval "$(thefuck --alias fk)"
 

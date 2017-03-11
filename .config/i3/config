@@ -332,7 +332,7 @@ bar {
 # gaps
 #smart_gaps on
 smart_borders on
-gaps inner 8
+gaps inner 6
 gaps outer 0
 
 ## Startup applications
@@ -347,13 +347,13 @@ exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=-300
 exec --no-startup-id synclient NaturalScrolling=0
 exec --no-startup-id synclient MaxTapTime=0
 exec xautolock -detectsleep -time 5 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 10 -notifier 'notify-send Going to Lock screen'
-#exec xss-lock -- sh ~/Wallpaper/lockscreen.sh &
+#exec xss-lock -- sh ~/Wallpaper/lockscreen.sh
 
 exec killall -KILL conky
 exec --no-startup-id sh ~/.conky/conky-startup.sh
 
 # Wallpaper
-exec_always sh $HOME/Wallpaper/wallpaper.sh
+exec_always $HOME/Wallpaper/wallpaper.sh
 #exec_always --no-startup-id feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
 exec Franz
 #exec eog $HOME/Google\ Drive/UST/Timetable.png
@@ -367,11 +367,11 @@ exec light -S 1
 #exec insync start
 
 exec --no-startup-id gnome-keyring-daemon
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id albert
 exec --no-startup-id cerebro
 exec --no-startup-id nm-applet
-exec --no-startup-id temps
+exec --no-startup-id Temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
