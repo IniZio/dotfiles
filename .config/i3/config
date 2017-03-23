@@ -29,8 +29,8 @@ set $urgent-bg-color     #E53935
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:FontAwesome, SFNS Display, Ubuntu 10
-font xft: SFNS Display 10
+font pango:FontAwesome, SFNS Display, Ubuntu 11
+font xft: SFNS Display 12
 #font pango:Fira Code, FontAwesome 9
 
 # thin borders
@@ -71,7 +71,6 @@ bindsym $mod+d exec LANG=en_US.UTF-8 dmenu_run -fn 'SFNS Display-12' -nb '#2f343
 
 bindsym $mod+b exec --no-startup-id rofi -show window
 bindsym $mod+p exec --no-startup-id rofi -show run
-bindsym $mod+g exec --no-startup-id rofi -switchers "file:~/rofi-file-browser.sh" -show file
 
 # change focus
 bindsym mod1+Shift+tab focus left
@@ -271,7 +270,7 @@ bindsym mod1+ctrl+l exec sh $HOME/Wallpaper/lockscreen.sh
 #bindsym $mod+Delete mode "$mode_system"
 bindsym $mod+Delete exec $HOME/.config/i3/scripts/system_menu
 bindsym ctrl+mod1+Delete exec i3-msg exit
-bindsym alt+space exec zazu
+#bindsym alt+space exec zazu
 
 #e Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume-adjust high
@@ -311,12 +310,13 @@ set $transparent #20202070
 bar {
   output eDP-1
   tray_output eDP-1
-  height 25
+  height 22
   position top
+  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+  #i3bar_command ~/.config/i3/powerline-lemonbar.py --i3
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   i3bar_command i3bar -t
-  #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
-  font pango:Ubuntu,Fira Code,FontAwesome, Terminus 10
+  font pango:SFNS Display, Ubuntu,Fira Code,FontAwesome, Terminus 11
   #tray_output primary
   colors {
     separator #666666
@@ -332,7 +332,7 @@ bar {
 # gaps
 #smart_gaps on
 smart_borders on
-gaps inner 6
+gaps inner 7
 gaps outer 0
 
 ## Startup applications
@@ -355,7 +355,7 @@ exec --no-startup-id sh ~/.conky/conky-startup.sh
 # Wallpaper
 exec_always $HOME/Wallpaper/wallpaper.sh
 #exec_always --no-startup-id feh --bg-scale $HOME/Wallpaper/wallpaper.jpg
-exec Franz
+exec franz
 #exec eog $HOME/Google\ Drive/UST/Timetable.png
 #exec eog $HOME/Pictures/Timetable.jpeg
 exec fcitx

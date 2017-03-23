@@ -1,4 +1,4 @@
-alignment top_middle
+alignment top_right
 background no
 border_width 0
 cpu_avg_samples 2
@@ -10,8 +10,8 @@ draw_graph_borders yes
 draw_outline no
 draw_shades no
 use_xft yes
-xftfont DejaVu Sans Mono:size=10
-#xftfont Source Code Pro:size=10
+#xftfont DejaVu Sans Mono:size=9
+xftfont Source Code Pro:size=9
 gap_x 0
 gap_y 0
 minimum_size 5 5
