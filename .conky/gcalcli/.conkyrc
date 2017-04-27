@@ -11,9 +11,10 @@ draw_outline no
 draw_shades no
 use_xft yes
 #xftfont DejaVu Sans Mono:size=9
-xftfont Source Code Pro:size=9
+#xftfont Source Code Pro:size=9
+xftfont Input Mono:size=10
 gap_x 0
-gap_y 0
+gap_y 10 
 minimum_size 5 5
 net_avg_samples 2
 double_buffer yes

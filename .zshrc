@@ -7,7 +7,8 @@ export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export TERMINAL=/usr/bin/gnome-terminal
+#export TERMINAL=/usr/bin/gnome-terminal
+export TERMINAL=/usr/bin/tilix
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -19,13 +20,18 @@ export GREP_COLOR='1;32'
 
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
+#fpath+=($fpath '/usr/local/lib/node_modules/pure-prompt/functions')
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="mh"
-#ZSH_THEME="powerline"
-ZSH_THEME="bullet-train"
+ZSH_THEME="bira"
+#ZSH_THEME="dracula"
+#ZSH_THEME="refined"
+#ZSH_THEME="avit"
+#ZSH_THEME="spaceship"
+#ZSH_THEME="xxf"
+#ZSH_THEME="bullet-train"
 #ZSH_THEME="random"
 
 # powerline theme options
@@ -93,22 +99,23 @@ BULLETTRAIN_IS_SSH_CLIENT=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z zsh-autosuggestions zsh-better-npm-completion)
+# zsh-syntax-highlighting must be last plugin sourced
+plugins=(git git-auto-status colorzed-man-pages cp fancy-ctrl-z z zsh-autosuggestions zsh-better-npm-completion docker docker-compose extract zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Make ctrl+z togglable
-#fancy-ctrl-z () {
-#  if [[ $#BUFFER -eq 0 ]]; then
-#    BUFFER="fg"
-#    zle accept-line
-#  else
-#    zle push-input
-#    zle clear-screen
-#  fi
-#}
-#zle -N fancy-ctrl-z
-#bindkey '^Z' fancy-ctrl-z
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -143,13 +150,16 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
+alias ls='ls --color=auto'
 alias scribble='cd ~/Thoughts; npm run post'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
+alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
+alias grep='grep --color=auto'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
-alias rm='rm-p'
+alias rm='rm-p -r'
 alias wallpaper='~/Wallpaper/wallpaper.sh'
 alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
@@ -165,12 +175,33 @@ tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | s
 # detach process from terminal
 detach () { eval "$*" &> /dev/null &}
 
+killport() {
+    if [ ! -n "$1" ] || [ $1 == '--help' ] || [ $1 == '-h' ]
+    then
+        echo '`killport <PORT>` finds the process listening to the specified port and kills it.'
+    else
+        process_line=`sudo lsof -i :$1 | tail -1`
+        if [ "$process_line" == "" ]
+        then
+            echo "no processes listening on $1"
+        else
+            process_name=`echo "$process_line" | awk '{print $1}'`
+            echo "killing $process_name"
+            sudo kill `echo "$process_line" | awk '{print $2}'`
+        fi
+    fi
+}
+
+# killport() {
+#  sudo kill $(fuser -n tcp $1 2> /dev/null)
+#}
+
 # systemctl aliases
 alias sc='systemctl'
 alias sc-services='systemctl list-units --type=service | grep --color -E "active running|$"' ﻿
 
-figlet Ini Zio
-
+#set -o vi
+#figlet Ini Zio 
 ## place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -193,7 +224,18 @@ fi
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+#autoload -U promptinit; promptinit
+#prompt pure
+
 source /etc/bash_completion.d/climate_completion
 export PATH="/home/iniz/.linuxbrew/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$PATH"
 export MANPATH="/home/iniz/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/iniz/.linuxbrew/share/info:$INFOPATH"
+
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi

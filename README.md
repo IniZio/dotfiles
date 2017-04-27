@@ -33,6 +33,8 @@ Gadgets:
 - Take a Break: er... yea take a break
 - [Temps](https://jackd248.github.io/temps/): Beautiful weather applet
 - Genymotion: faster emulator than Android AVD (only free for personal use with limited features though)
+- howdoi: `pip install howdoi`
+- [git lfs](https://git-lfs.github.com/)
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions
