@@ -174,7 +174,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 for_window [class=".*"] title_format " %title"
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
 
 # floating window
 for_window [title="Guake!"] floating enable #, move container to workspace $workspace2
@@ -185,6 +185,7 @@ for_window [title="synapse"] floating enable, border pixel 0 #, move container t
 for_window [class="Genymotion Player"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [class="Android Emulator*"] floating enable, border pixel 0 #, move container to workspace $workspace2
 for_window [class="Steam"] floating enable
+for_window [class="crx_ifmkoicemkalpaoaeceleacemggafijh"] floating enable
 for_window [class="Franz"] floating enable
 for_window [class="file-roller"] floating enable
 for_window [class="Nautilus"] floating enable
@@ -316,7 +317,7 @@ set $transparent #20202070
 bar {
   output eDP-1
   tray_output primary
-  #height 20
+#height 20
   position top
   #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
   #i3bar_command ~/.config/i3/powerline-lemonbar.py --i3
@@ -326,7 +327,7 @@ bar {
   #tray_output primary
   colors {
     separator #888888
-    background #333333
+    background #455A64FF
     statusline #FFFFFF
     focused_workspace #4E9C00 #4E9C00 #FFFFFF
     active_workspace #333333 #333333 #FFFFFF
@@ -387,6 +388,7 @@ exec --no-startup-id Temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
+exec_always --no-startup-id redshift
 exec --no-startup-id synclient
 exec --no-startup-id /opt/takeabreak/takeabreak/takeabreak -toggle
 

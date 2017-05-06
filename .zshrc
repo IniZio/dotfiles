@@ -85,7 +85,7 @@ BULLETTRAIN_IS_SSH_CLIENT=""
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -165,12 +165,14 @@ alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
 alias all='all-nvm'
 alias apt='apt-fast'
+alias deadline='gcalcli --calendar Deadline quick'
+alias calendar='gcalcli --calendar Life quick'
 
 eval "$(thefuck --alias fk)"
 
 # conveniently share file with transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+  tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; echo "$(cat $tmpfile)"; rm -f $tmpfile; } 
 
 # detach process from terminal
 detach () { eval "$*" &> /dev/null &}

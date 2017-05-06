@@ -35,6 +35,8 @@ Gadgets:
 - Genymotion: faster emulator than Android AVD (only free for personal use with limited features though)
 - howdoi: `pip install howdoi`
 - [git lfs](https://git-lfs.github.com/)
+- [Ethcher](https://etcher.io/)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions
