@@ -168,7 +168,6 @@ alias apt='apt-fast'
 alias deadline='gcalcli --calendar Deadline quick'
 alias calendar='gcalcli --calendar Life quick'
 
-eval "$(thefuck --alias fk)"
 
 # conveniently share file with transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
@@ -230,10 +229,12 @@ load-nvmrc
 #prompt pure
 
 source /etc/bash_completion.d/climate_completion
-export PATH="/home/iniz/.linuxbrew/bin:$PATH"
+export PATH="/home/iniz/.linuxbrew/bin:$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$PATH"
 export MANPATH="/home/iniz/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/iniz/.linuxbrew/share/info:$INFOPATH"
+
+eval "$(thefuck --alias fk)"
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes

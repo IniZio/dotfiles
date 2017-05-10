@@ -385,7 +385,8 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id cerebro
 exec --no-startup-id nm-applet
 exec --no-startup-id Temps
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+#exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
 exec_always --no-startup-id redshift

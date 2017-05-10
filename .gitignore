@@ -1,6 +1,7 @@
 *
 !/.gitignore
 !/.gitconfig
+!/.gitmessage
 !/.xinitrc
 !/.bashrc
 !/.zshrc

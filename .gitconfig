@@ -1,6 +1,8 @@
 [alias]
   l = log --pretty=colored
   please = push --force-with-lease
+[commit]
+  template = ~/.gitmessage
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [user]
