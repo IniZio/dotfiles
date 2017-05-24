@@ -318,16 +318,16 @@ bar {
   output eDP-1
   tray_output primary
 #height 20
-  position top
+  position bottom
   #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
   #i3bar_command ~/.config/i3/powerline-lemonbar.py --i3
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #i3bar_command i3bar -t
-  font pango:SFNS Display, Ubuntu,Fira Code,FontAwesome, Terminus 11
+  font pango:SFNS Display, Ubuntu,Fira Code,FontAwesome, Terminus 12
   #tray_output primary
   colors {
     separator #888888
-    background #455A64FF
+    background #333333
     statusline #FFFFFF
     focused_workspace #4E9C00 #4E9C00 #FFFFFF
     active_workspace #333333 #333333 #FFFFFF
@@ -347,18 +347,21 @@ bar {
 exec_always killall -q notify-osd
 exec_always --no-startup-id dunst -config ~/.config/i3/dunst.conf
 
+exec_always xset r rate 210 30 
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
-exec_always --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Two-Finger Scrolling" 1 1
-exec_always --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Scrolling Distance" 50 50
-exec_always --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Palm Detection" 1
-exec_always --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Device Accel Constant Deceleration" 1.5
-exec_always --no-startup-id xinput -set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Tap Action" 1, 1, 1, 1, 1, 1, 1
-exec --no-startup-id synclient VertEdgeScroll=0 HorizEdgeScroll=0
-exec --no-startup-id synclient VertTwoFingerScroll=1 HorizTwoFingerScroll=1
-exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=-300
-exec --no-startup-id synclient NaturalScrolling=0
-exec --no-startup-id synclient MaxTapTime=0
-exec --no-startup-id synclient HorizTwoFingerScroll=1
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Two-Finger Scrolling" 1 1
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Scrolling Distance" 50 50
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Palm Detection" 1
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Natural Scrolling Enabled" 1
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Natural Scrolling Enabled Default" 1
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "Device Accel Constant Deceleration" 3.0
+exec_always --no-startup-id xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "Synaptics Tap Action" 1, 1, 1, 1, 1, 1, 1
+#exec --no-startup-id synclient VertEdgeScroll=0 HorizEdgeScroll=0
+#exec --no-startup-id synclient VertTwoFingerScroll=1 HorizTwoFingerScroll=1
+#exec --no-startup-id synclient VertScrollDelta=-300 HorizScrollDelta=300
+#exec --no-startup-id synclient NaturalScrolling=1
+#exec --no-startup-id synclient MaxTapTime=0
+#exec --no-startup-id synclient HorizTwoFingerScroll=1
 exec xautolock -detectsleep -time 5 -locker 'sh $HOME/Wallpaper/lockscreen.sh' -notify 10 -notifier 'notify-send Going to Lock screen'
 #exec xss-lock -- sh ~/Wallpaper/lockscreen.sh
 
