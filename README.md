@@ -37,6 +37,7 @@ Gadgets:
 - [git lfs](https://git-lfs.github.com/)
 - [Ethcher](https://etcher.io/)
 - [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Git Town](http://www.git-town.com)
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions
