@@ -150,7 +150,7 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias ls='ls --color=auto'
+alias ls='ls -F --color=auto'
 alias scribble='cd ~/Thoughts; npm run post'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
 alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
@@ -159,7 +159,9 @@ alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
 alias grep='grep --color=auto'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
-alias rm='rm-p -r'
+alias rm='rm-p -ri'
+alias mv='mv -i'
+alias cp='cp -i'
 alias wallpaper='~/Wallpaper/wallpaper.sh'
 alias wall='~/Wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
@@ -167,7 +169,6 @@ alias all='all-nvm'
 alias apt='apt-fast'
 alias deadline='gcalcli --calendar Deadline quick'
 alias calendar='gcalcli --calendar Life quick'
-
 
 # conveniently share file with transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
@@ -230,7 +231,7 @@ load-nvmrc
 
 source /etc/bash_completion.d/climate_completion
 export PATH="/home/iniz/.linuxbrew/bin:$HOME/.local/bin:$PATH"
-export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$HOME/.nvm/versions/node/v6.10.0/bin/npm:$PATH"
 export MANPATH="/home/iniz/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/iniz/.linuxbrew/share/info:$INFOPATH"
 
