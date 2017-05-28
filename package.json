@@ -1,0 +1,33 @@
+{
+  "name": "iniz",
+  "version": "1.0.0",
+  "description": "Environment:",
+  "main": ".mongorc.js",
+  "dependencies": {
+    "babel-eslint": "^7.2.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^3.0.1",
+    "iotacss": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-vue": "^2.0.1",
+    "typescript": "^2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IniZio/dotfiles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IniZio/dotfiles/issues"
+  },
+  "homepage": "https://github.com/IniZio/dotfiles#readme"
+}

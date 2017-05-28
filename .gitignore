@@ -19,3 +19,5 @@
 !/.conky/
 !/.compton.conf
 !/.setup
+!/.eslintrc
+!/package.json

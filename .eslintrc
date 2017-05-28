@@ -1,0 +1,13 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["vue", "standard"],
+  "plugins": [
+    "react",
+    "vue"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "semi": "off",
+    "indent": ["warn", 2]
+  }
+}

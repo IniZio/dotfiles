@@ -5,6 +5,7 @@
 	hack = town hack
 	kill = town kill
 	new-pull-request = town new-pull-request
+	new-pr = town new-pull-request
 	prepend = town prepend
 	prune-branches = town prune-branches
 	rename-branch = town rename-branch

@@ -34,10 +34,10 @@ Gadgets:
 - [Temps](https://jackd248.github.io/temps/): Beautiful weather applet
 - Genymotion: faster emulator than Android AVD (only free for personal use with limited features though)
 - howdoi: `pip install howdoi`
-- [git lfs](https://git-lfs.github.com/)
-- [Ethcher](https://etcher.io/)
-- [Nodemon](https://www.npmjs.com/package/nodemon)
-- [Git Town](http://www.git-town.com)
+- [git lfs](https://git-lfs.github.com/): use pointers for large files in git repo to save local space
+- [Ethcher](https://etcher.io/): USB writer with a finally good UI
+- [Nodemon](https://www.npmjs.com/package/nodemon): watch files and restart nodejs script on change
+- [Git Town](http://www.git-town.com): hard to describe, a unification of git flow, github flow and gitlab flow?
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions
