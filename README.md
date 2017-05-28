@@ -15,22 +15,22 @@ Gadgets:
 - TLP: save battery
 - [Conky](https://github.com/brndnmtthws/conky): I use it for showing gcalcli on desktop
 - VS code: Not as eye-candy as Atom, but better in many ways
-- Synapse (in ubuntu repo already): Unity's Alt-F2 alternative in i3wm
-- Postman
+- ~~Synapse~~[Cerebro](http://cerebroapp.com/): Unity's Alt-F2 alternative in i3wm
+- Postman / [Insominia](https://insomnia.rest/)
 - [Franz](http://meetfranz.com/): Unify all your chat clients
 - Netease Music: :+1:
-- Fira Code font: Best Programming font
+- ~~Fira Code font~~, [Input Mono](input.fontbureau.com/): Best Programming font
 - [Powerline's Mono fonts](https://github.com/powerline/fonts): All nice fonts for terminal e.g. Hack, SourceCode Pro, RobotoMono
-- Typora: Best Markdown writer
+- [Typora](typora.io): Best Markdown writer
 - Guake terminal: Drop-down terminal
 - Fcitx: Enter chinese(*cough* i only know pinyin...)
-- Gitkraken: Best Git GUI client
+- [Gitkraken](https://www.gitkraken.com/): Best Git GUI client
 - Audacity: Record stuff at times
 - NaSC: Not as powerful as WolframAlpha, but well sometimes you have to be offline..
 - Meld: Compare files/directories, good for dirty comparisons
 - Redshift / flux indicator applet (in ubuntu repo already): Save your eyes
-- Insync: sync your google drive
-- Take a Break: er... yea take a break
+- ~~Insync~~: sync your google drive (eats battery)
+- [Take a Break](http://ppa.launchpad.net/vlijm/takeabreak/ubuntu/pool/main/t/takeabreak/): er... yea take a break
 - [Temps](https://jackd248.github.io/temps/): Beautiful weather applet
 - Genymotion: faster emulator than Android AVD (only free for personal use with limited features though)
 - howdoi: `pip install howdoi`
