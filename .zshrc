@@ -25,8 +25,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
-#ZSH_THEME="dracula"
+#ZSH_THEME="bira"
+ZSH_THEME="dracula"
 #ZSH_THEME="refined"
 #ZSH_THEME="avit"
 #ZSH_THEME="spaceship"
@@ -151,7 +151,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
 alias ls='ls -F --color=auto'
-alias scribble='cd ~/Thoughts; npm run post'
+alias scribble='cd ~/scribbles/; npm run post'
 alias imos='ssh kcchowac@eea258.ee.ust.hk'
 alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'

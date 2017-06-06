@@ -67,6 +67,7 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages '(vue-mode
+                                       jsx-mode
                                         editorconfig
                                         neotree
                                         projectile
@@ -163,7 +164,7 @@ values."
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     ;; "Source Code Pro"
-    dotspacemacs-default-font '("Fira Code"
+    dotspacemacs-default-font '("Input Mono"
                                  :size 15
                                  :weight normal
                                  :width normal
@@ -399,6 +400,7 @@ you should place your code here."
   (setq indent-line-function 'insert-tab)
 
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   ;; hooks
   (add-hook 'switch-buffer-functions 'neotree-resize-window)
 
