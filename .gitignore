@@ -1,23 +1,60 @@
+# Ignore everything by default
 *
-!/.gitignore
-!/.gitconfig
-!/.gitmessage
-!/.xinitrc
-!/.bashrc
-!/.zshrc
-/.oh-my-zsh/*
-!/.vimrc
-!/.spacemacs
-!/Wallpaper/*
-/Wallpaper/*.jpg
-/Wallpaper/*.png
-!/.config/
-!/.config/i3/*
-!/.config/i3/scripts/*.*
-!/.config/nvim/init.vim
-!/.config/nyaovim/nyaovimrc.html
-!/.conky/
-!/.compton.conf
-!/.setup
-!/.eslintrc
-!/package.json
+
+# Include git config
+!.gitignore
+!.gitconfig
+!.gitmessage
+
+# Include shell config
+!.bashrc
+!.zshrc
+
+# Ignore zsh plugins
+.oh-my-zsh/*
+
+# Include editor config
+!.vimrc
+!.spacemacs
+!.config/nvim
+!.config/nvim/init.vim
+!.config/nyaovim
+!.config/nyaovim/nyaovimrc.html
+!.config/Code
+!.config/Code/User
+!.config/Code/User/settings.json
+!.config/Code/User/keybindings.json
+
+# Include wallpaper generator
+!Wallpaper
+!Wallpaper/*
+!Wallpaper/*/*
+Wallpaper/node_modules
+Wallpaper/*.jpg
+Wallpaper/*.png
+
+# Include user-application config
+!.config
+!.config/i3
+!.config/i3/*
+!.config/i3/*/*
+
+# Include compton config
+!.compton.conf
+
+# Include conky
+!.conky/
+!.conky/*
+!.conky/*/*
+
+# Include setup script
+!.setup
+!.setup/*
+
+# Include nodejs config
+node_modules
+!.eslintrc
+!package.json
+
+# And of course README
+!README.md
