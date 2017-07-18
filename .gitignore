@@ -47,6 +47,10 @@ Wallpaper/*.png
 !.conky/*
 !.conky/*/*
 
+# Include fonts
+!.fonts
+!.fonts/*
+
 # Include setup script
 !.setup
 !.setup/*

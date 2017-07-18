@@ -240,6 +240,8 @@ eval "$(thefuck --alias fk)"
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
-if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
+#if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
+#    source /etc/profile.d/vte.sh
+#fi
+
+source <(npx --shell-auto-fallback zsh)
