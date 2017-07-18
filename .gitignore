@@ -60,5 +60,21 @@ node_modules
 !.eslintrc
 !package.json
 
+# Include steam game config
+!.steam
+!.steam/steam
+!.steam/steam/steamapps
+!.steam/steam/steamapps/common
+!.steam/steam/steamapps/common/Team\ Fortress\ 2
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/*.vpk
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff/*
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff/cfg
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff/cfg/*
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff/scripts
+!.steam/steam/steamapps/common/Team\ Fortress\ 2/tf/custom/userstuff/scripts/*
+
 # And of course README
 !README.md
