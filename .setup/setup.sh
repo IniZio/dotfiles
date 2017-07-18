@@ -55,9 +55,14 @@ cd /tmp
 curl -sL https://github.com/nana-4/Flat-Plat/archive/v20170307.tar.gz | tar xz
 cd Flat-Plat-20170307 && sudo ./install.sh && cd
 
-# pip-related: gcalcli
+# pip-related
+#   gcalcli
 sudo apt install pip3
-sudo -H pip3 install gcalcli
+pip3 install gcalcli
+
+#   gimmicks lol
+pip3 install howdoi
+pip3 install thefuck
 
 # Google Chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -92,3 +97,7 @@ curl -o- https://github.com/KELiON/cerebro/releases/download/0.2.7/cerebro_0.2.7
 
 # NVM
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+# Git-town
+curl https://github.com/Originate/git-town/releases/download/v4.1.2/git-town-linux-amd64 > ~/.local/bin/git-town
+chmod +x ~/.local/bin/git-town
