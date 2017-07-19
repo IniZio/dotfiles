@@ -78,6 +78,10 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt-fast update
 sudo apt-fast -y install google-chrome-stable
 
+# Google online account integration
+sudo apt-fast install gnome-control-center gnome-online-accounts
+Exec=env XDG_CURRENT_DESKTOP=GNOME gnome-control-center --overview
+
 # Editor
 #   VS Code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
