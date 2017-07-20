@@ -50,6 +50,7 @@ Wallpaper/*.png
 # Include fonts
 !.fonts
 !.fonts/*
+!.fonts.conf
 
 # Include setup script
 !.setup

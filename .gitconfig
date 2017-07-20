@@ -1,6 +1,7 @@
 [alias]
   l = log --pretty=colored
   please = push --force-with-lease
+  unstage = reset HEAD
 	append = town append
 	hack = town hack
 	kill = town kill
@@ -17,7 +18,7 @@
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [user]
-	email = digit4free@gmail.com
+	email = newman.kcchow@gmail.com
 	name = inizio
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
