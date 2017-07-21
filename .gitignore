@@ -26,12 +26,12 @@
 !.config/Code/User/keybindings.json
 
 # Include wallpaper generator
-!Wallpaper
-!Wallpaper/*
-!Wallpaper/*/*
-Wallpaper/node_modules
-Wallpaper/*.jpg
-Wallpaper/*.png
+!wallpaper
+!wallpaper/*
+!wallpaper/*/*
+wallpaper/node_modules
+wallpaper/*.jpg
+wallpaper/*.png
 
 # Include user-application config
 !.config
