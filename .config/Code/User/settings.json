@@ -3,7 +3,7 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
-    "editor.fontSize": 17,
+    "editor.fontSize": 18,
     "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
@@ -16,5 +16,8 @@
         "**/.DS_Store": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "Adapta Nokto",
+    "todohighlight.isCaseSensitive": false,
+    "window.zoomLevel": 0,
+    "files.insertFinalNewline": true
 }

@@ -112,6 +112,9 @@ cd /tmp
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 mkdir ~/.npm && sudo chown -R $(whoami) ~/.npm
 
+# Caddy
+curl https://getcaddy.com | bash -s http.git,http.minify
+
 # Git-town
 # curl https://github.com/Originate/git-town/releases/download/v4.1.2/git-town-linux-amd64 > ~/.local/bin/git-town
 # chmod +x ~/.local/bin/git-town

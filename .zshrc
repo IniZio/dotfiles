@@ -152,7 +152,8 @@ fi
 alias cls="clear"
 alias ls='ls -F --color=auto'
 alias scribble='cd ~/scribbles/; npm run post'
-alias imos='ssh kcchowac@eea258.ee.ust.hk'
+alias imos='ssh eea258.ee.ust.hk'
+alias usthing='ssh usthing@pvs0068.ust.hk'
 alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
@@ -162,8 +163,8 @@ alias copy='xclip -sel clip'
 alias rm='rm-p -ri'
 alias mv='mv -i'
 alias cp='cp -i'
-alias wallpaper='~/Wallpaper/wallpaper.sh'
-alias wall='~/Wallpaper/wallpaper.sh'
+alias wallpaper='~/wallpaper/wallpaper.sh'
+alias wall='~/wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
 alias all='all-nvm'
 alias apt='apt-fast'
@@ -230,8 +231,9 @@ load-nvmrc
 #prompt pure
 
 source /etc/bash_completion.d/climate_completion
-export PATH="/home/iniz/.linuxbrew/bin:$HOME/.local/bin:$PATH"
-export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$HOME/.nvm/versions/node/v6.10.0/bin/npm:$PATH"
+export PATH="/home/iniz/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/lib/node_modules:$HOME/.nvm/versions/node/v6.10.0/bin:$PATH"
 export MANPATH="/home/iniz/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/iniz/.linuxbrew/share/info:$INFOPATH"
 
@@ -245,3 +247,4 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 #fi
 
 source <(npx --shell-auto-fallback zsh)
+export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
