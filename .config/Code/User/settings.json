@@ -19,5 +19,11 @@
     "workbench.colorTheme": "Adapta Nokto",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.useCtrlKeys": false,
+    "explorer.openEditors.visible": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "vim.useSystemClipboard": true,
+    "eslint.autoFixOnSave": true
 }
