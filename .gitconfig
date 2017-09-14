@@ -1,5 +1,5 @@
 [alias]
-  l = log --pretty=colored
+  l = log --pretty=colored --decorate --graph --date=relative --abbrev-commit
   please = push --force-with-lease
   unstage = reset HEAD
 	append = town append
@@ -25,3 +25,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[push]
+	default = simple

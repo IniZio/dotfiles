@@ -202,6 +202,7 @@ killport() {
 # systemctl aliases
 alias sc='systemctl'
 alias sc-services='systemctl list-units --type=service | grep --color -E "active running|$"' ﻿
+alias bfg='java -jar ~/bfg.jar'
 
 #set -o vi
 #figlet Ini Zio 
@@ -246,5 +247,8 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 #    source /etc/profile.d/vte.sh
 #fi
 
-source <(npx --shell-auto-fallback zsh)
 export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/iniz/.sdkman"
+[[ -s "/home/iniz/.sdkman/bin/sdkman-init.sh" ]] && source "/home/iniz/.sdkman/bin/sdkman-init.sh"

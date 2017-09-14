@@ -3,7 +3,7 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
@@ -13,10 +13,11 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
-        "**/.DS_Store": true
+        "**/.DS_Store": true,
+        "**/dist": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Adapta Nokto",
+    "workbench.colorTheme": "Atom One Dark",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -25,5 +26,7 @@
     "explorer.openEditors.visible": 0,
     "workbench.iconTheme": "material-icon-theme",
     "vim.useSystemClipboard": true,
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "editor.smoothScrolling": true,
+    "editor.lineHeight": 22
 }
