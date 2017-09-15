@@ -134,6 +134,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # AFTER ZSH
 # dot files (Setup SSH before this FIRST!!!)
 cd /tmp
-git clone https://github.com/IniZio/dotfiles.git && mv dotfiles/*(DN) ~/
+git clone https://github.com/IniZio/dotfiles.git && mv dotfiles/{.[!.],}* ~/
 
 chsh -s $(which zsh)
