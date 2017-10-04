@@ -9,6 +9,7 @@
 # Include shell config
 !.bashrc
 !.zshrc
+!.xinitrc
 
 # Ignore zsh plugins
 .oh-my-zsh/*

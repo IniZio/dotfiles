@@ -3,8 +3,8 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
-    "editor.fontSize": 16,
-    "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 15,
+    "editor.fontFamily": "'Source Code Pro', 'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
         "**/.git": true,
@@ -17,16 +17,22 @@
         "**/dist": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Atom One Dark",
+    "workbench.colorTheme": "Adapta Nokto",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useCtrlKeys": false,
     "explorer.openEditors.visible": 0,
-    "workbench.iconTheme": "material-icon-theme",
     "vim.useSystemClipboard": true,
     "eslint.autoFixOnSave": true,
     "editor.smoothScrolling": true,
-    "editor.lineHeight": 22
+    "editor.lineHeight": 22,
+    "gitlens.recentChanges.file.lineHighlight.locations": [
+        "line",
+        "gutter",
+        "overviewRuler"
+    ],
+    "git.enableCommitSigning": true,
+    "C_Cpp.intelliSenseEngine": "Default"
 }

@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/vim"
+export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"
@@ -252,3 +253,6 @@ export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/iniz/.sdkman"
 [[ -s "/home/iniz/.sdkman/bin/sdkman-init.sh" ]] && source "/home/iniz/.sdkman/bin/sdkman-init.sh"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"

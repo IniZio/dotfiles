@@ -22,9 +22,9 @@ cp "$randWall" $HOME/wallpaper/wall.jpg
 cp $HOME/wallpaper/wall.jpg $HOME/wallpaper/wallpaper.jpg
 
 #Set wallpaper
-#gsettings set org.gnome.desktop.background picture-uri '"file://'$HOME'/wallpaper/wallpaper.jpg"'
+gsettings set org.gnome.desktop.background picture-uri '"file://'$HOME'/wallpaper/wallpaper.jpg"'
 
-#gsettings set org.gnome.desktop.screensaver picture-uri '"file://'$HOME'/wallpaper/wallpaper.jpg"'
+gsettings set org.gnome.desktop.screensaver picture-uri '"file://'$HOME'/wallpaper/wallpaper.jpg"'
 
 #feh --bg-scale "$HOME/wallpaper/wallpaper.jpg"
 
