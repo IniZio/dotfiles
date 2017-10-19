@@ -15,6 +15,16 @@ sudo apt-fast install -y ibus-libpinyin
 sudo apt-fast install -y gnome-tweak-tool redshift-gtk dh-autoreconf
 sudo apt-fast install -y git vim emacs guake meld
 
+# Touchpad gesture
+sudo gpasswd -a $USER input # need to logout
+sudo apt-fast install xdotool wmctrl
+sudo apt-fast install libinput-tools
+git clone http://github.com/bulletmark/libinput-gestures
+cd libinput-gestures
+sudo ./libinput-gestures-setup install
+./libinput-gestures-setup start
+./libinput-gestures-setup autostart
+
 # climate command
 cd /tmp
 git clone https://github.com/adtac/climate.git

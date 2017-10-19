@@ -4,7 +4,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
     "editor.fontSize": 15,
-    "editor.fontFamily": "'Source Code Pro', 'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
         "**/.git": true,
@@ -14,10 +14,12 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/dist": true
+        "**/dist": true,
+        "**/*.js.map": true,
+        "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Adapta Nokto",
+    "workbench.colorTheme": "One Dark Pro Vivid",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -34,5 +36,14 @@
         "overviewRuler"
     ],
     "git.enableCommitSigning": true,
-    "C_Cpp.intelliSenseEngine": "Default"
+    "C_Cpp.intelliSenseEngine": "Default",
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "javascript": "javascriptreact"
+    },
+    "prettier.eslintIntegration": true,
+    "prettier.stylelintIntegration": true,
+    "prettier.singleQuote": true,
+    "prettier.semi": false,
+    "search.useIgnoreFilesByDefault": true
 }

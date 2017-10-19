@@ -1,5 +1,5 @@
 [alias]
-  l = log --pretty=colored --decorate --graph --date=relative --abbrev-commit
+  l = log --pretty=colored --decorate --graph --date=relative --abbrev-commit --all
   please = push --force-with-lease
   unstage = reset HEAD
 	append = town append
