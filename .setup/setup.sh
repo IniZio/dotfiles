@@ -146,4 +146,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 cd /tmp
 git clone https://github.com/IniZio/dotfiles.git && mv dotfiles/{.[!.],}* ~/
 
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+
 chsh -s $(which zsh)
