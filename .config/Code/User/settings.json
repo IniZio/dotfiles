@@ -19,7 +19,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Adapta Nokto",
+    "workbench.colorTheme": "One Dark Pro Vivid",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -46,5 +46,14 @@
     "prettier.singleQuote": true,
     "prettier.semi": false,
     "search.useIgnoreFilesByDefault": true,
-    "workbench.iconTheme": "material-icon-theme"
+    "workbench.iconTheme": "material-icon-theme",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "flow.fileExtensions": [
+        ".js",
+        ".vue",
+        ".mjs",
+        ".jsx",
+        ".flow",
+        ".json"
+    ]
 }

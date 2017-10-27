@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/vim"
-export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+export JAVA_HOME="/usr/lib/jvm/java-9-openjdk-amd64"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"
@@ -168,7 +168,7 @@ alias wallpaper='~/wallpaper/wallpaper.sh'
 alias wall='~/wallpaper/wallpaper.sh'
 alias orient='xrandr --output eDP-1  --rotate normal'
 alias all='all-nvm'
-alias apt='apt-fast'
+#alias apt='apt-fast'
 alias deadline='gcalcli --calendar Deadline quick'
 alias calendar='gcalcli --calendar Life quick'
 
@@ -239,7 +239,7 @@ export PATH="$HOME/.config/composer/vendor/bin:$HOME/.linuxbrew/bin:/usr/local/l
 export MANPATH="/home/iniz/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/iniz/.linuxbrew/share/info:$INFOPATH"
 
-eval "$(thefuck --alias fk)"
+eval $(thefuck --alias fk)
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
