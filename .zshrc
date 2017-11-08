@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/vim"
-export JAVA_HOME="/usr/lib/jvm/java-9-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ANDROID_HOME="$HOME/Android/Sdk"
 export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"

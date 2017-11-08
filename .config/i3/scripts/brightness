@@ -34,7 +34,7 @@ elif [[ "${METHOD}" = "light" ]]; then
   curBrightness=$(light)
 fi
 
-if [[ "${curBrightness}" -le 0 ]]; then
+if [[ "${curBrightness}" <= 0 ]]; then
   exit
 fi
 

@@ -1,5 +1,5 @@
 #!/bin/sh -e
-ICON=$HOME/Wallpaper/locked.png
+ICON=$HOME/wallpaper/locked.png
 TMPBG=/tmp/screen.png
 scrot $TMPBG
 convert $TMPBG -scale 5% -scale 2000% $TMPBG

@@ -7,6 +7,7 @@
     "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
+        "**/.nuxt": true,
         "**/.git": true,
         "**/node_modules": true,
         "**/bower_modules": true,
@@ -19,7 +20,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "One Dark Pro Vivid",
+    "workbench.colorTheme": "Ambiance [beta]",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -55,5 +56,6 @@
         ".jsx",
         ".flow",
         ".json"
-    ]
+    ],
+    "typescript.npm": "~/.nvm/versions/node/v8.7.0/bin/npm"
 }
