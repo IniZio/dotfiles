@@ -20,7 +20,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Ambiance [beta]",
+    "workbench.colorTheme": "One Dark Pro",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -57,5 +57,12 @@
         ".flow",
         ".json"
     ],
-    "typescript.npm": "~/.nvm/versions/node/v8.7.0/bin/npm"
+    "typescript.npm": "~/.nvm/versions/node/v8.7.0/bin/npm",
+    "typescript.check.npmIsInstalled": false,
+    "javascript.validate.enable": false,
+    "workbench.panel.location": "bottom",
+    "editor.renderIndentGuides": false,
+    "eslint.run": "onSave",
+    "flow.runOnEdit": false,
+    "flow.enabled": false
 }

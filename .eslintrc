@@ -3,7 +3,8 @@
     "extends": ["vue", "standard"],
     "plugins": [
         "react",
-        "vue"
+        "vue",
+	"flowtype"
     ],
     "rules": {
         "no-unused-vars": "off",

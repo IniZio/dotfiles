@@ -38,6 +38,7 @@ Gadgets:
 - [Ethcher](https://etcher.io/): USB writer with a finally good UI
 - [Nodemon](https://www.npmjs.com/package/nodemon): watch files and restart nodejs script on change
 - [Git Town](http://www.git-town.com): hard to describe, a unification of git flow, github flow and gitlab flow?
+- [VTop](https://github.com/MrRio/vtop): really nice nodejs alternative of top
 
 Credits:
 - [Jilles](http://jilles.me/badassify-your-terminal-and-shell/): My ZSH shell configs are based off his suggestions

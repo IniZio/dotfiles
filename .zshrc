@@ -228,6 +228,7 @@ fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+xset m 00
 
 #autoload -U promptinit; promptinit
 #prompt pure

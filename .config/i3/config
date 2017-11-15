@@ -29,9 +29,9 @@ set $urgent-bg-color     #E53935
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:FontAwesome, Product, Ubuntu 11
-font xft: Product 11
-font pango:Fira Code, FontAwesome 9
+font pango:FontAwesome, Ubuntu 11
+font xft: Ubuntu 11
+#font pango:Fira Code, FontAwesome 9
 
 # thin borders
 hide_edge_borders both
@@ -70,7 +70,7 @@ bindsym $mod+d exec LANG=en_US.UTF-8 dmenu_run -fn 'SFNS Display-12' -nb '#2f343
 # start j4-dmenu
 #bindsym $mod+d exec j4-dmenu-desktop
 
-bindsym $mod+a exec --no-startup-id rofi -show window
+#bindsym $mod+a exec --no-startup-id rofi -show window
 bindsym $mod+p exec --no-startup-id rofi -show run
 
 # change focus
@@ -130,7 +130,7 @@ bindsym $mod+button3 floating toggle
 #bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -201,7 +201,7 @@ for_window [class="Pantheon-*"] floating enable
 for_window [class="Alarm-clock-applet"] floating enable
 
 for_window [class="nuvolaplayer3-youtube"] floating enable, move container to workspace $workspace1
-for_window [class="hl2_linux"] fullscreen, move container to workspace $workspace4
+for_window [class="hl2_linux"] fullscreen enable, move container to workspace $workspace4
 for_window [class="gnome-*"] floating enable
 for_window [class="Tor Browser"] floating enable, move container to workspace $workspace1
 for_window [title="Pages Unresponsive"] floating enable
@@ -329,7 +329,7 @@ bar {
   #i3bar_command ~/.config/i3/powerline-lemonbar.py --i3
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
 #i3bar_command i3bar -t
-  font pango:Product, Ubuntu,Fira Code,FontAwesome, Terminus 12
+  font pango:Ubuntu,Fira Code,FontAwesome, Terminus 12
   #tray_output primary
   colors {
     separator #888888
@@ -351,7 +351,8 @@ gaps outer 0
 ## Startup applications
 # Notification
 exec_always killall -q notify-osd
-exec_always --no-startup-id dunst -config ~/.config/i3/dunst.conf
+exec_always killall -q dunst
+exec_always --no-startup-id dunst -config $HOME/.config/i3/dunst.conf
 
 exec_always xset r rate 210 30 
 exec_always xinput set-prop "DLL0665:01 06CB:76AD Touchpad" "libinput Tapping Enabled" 1
@@ -398,6 +399,7 @@ exec --no-startup-id Temps
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
+exec_always pkill redshift
 exec_always --no-startup-id redshift-gtk
 exec --no-startup-id synclient
 exec --no-startup-id libinput-gestures
