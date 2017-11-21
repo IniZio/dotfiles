@@ -28,6 +28,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="bira"
 ZSH_THEME="dracula"
+#ZSH_THEME="linuxer-fancy"
 #ZSH_THEME="refined"
 #ZSH_THEME="avit"
 #ZSH_THEME="spaceship"
@@ -260,3 +261,6 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 export TASKDDATA="~/taskd"
 
 export PATH="$HOME/.yarn/bin:$PATH"
+
+# added by travis gem
+[ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh

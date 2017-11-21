@@ -396,7 +396,9 @@ exec --no-startup-id cerebro
 exec --no-startup-id nm-applet
 exec --no-startup-id Temps
 #exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-power
+exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-locate-printer
 # exec --no-startup-id gnome-sound-applet
 exec_always --no-startup-id compton -b
 exec_always pkill redshift
