@@ -52,6 +52,7 @@ wallpaper/*.png
 !.fonts
 !.fonts/*
 !.fonts.conf
+.fonts/Op*
 
 # Include setup script
 !.setup

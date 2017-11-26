@@ -1,5 +1,6 @@
-# apt-fast-fast
-sudo add-apt-repository -y ppa:saiarcot895/myppa
+# apt-fast
+#sudo add-apt-repository -y ppa:saiarcot895/myppa
+sudo add-apt-repository -y ppa:apt-fast/stable
 sudo apt update
 sudo apt -y install apt-fast
 alias apt='apt-fast'

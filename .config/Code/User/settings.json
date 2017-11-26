@@ -2,8 +2,8 @@
     "window.menuBarVisibility": "toggle",
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.visible": true,
-    "editor.fontSize": 15,
+    "workbench.statusBar.visible": false,
+    "editor.fontSize": 14,
     "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
@@ -20,7 +20,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Atom One Light",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -60,10 +60,12 @@
     "typescript.npm": "~/.nvm/versions/node/v8.7.0/bin/npm",
     "typescript.check.npmIsInstalled": false,
     "javascript.validate.enable": false,
-    "workbench.panel.location": "right",
+    "workbench.panel.location": "bottom",
     "editor.renderIndentGuides": false,
     "eslint.run": "onSave",
     "flow.runOnEdit": false,
     "flow.enabled": false,
-    "gitlens.gitExplorer.files.layout": "auto"
+    "gitlens.gitExplorer.files.layout": "auto",
+    "fileheader.Author": "Newman",
+    "fileheader.LastModifiedBy": "Newman"
 }
