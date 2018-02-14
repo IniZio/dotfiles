@@ -190,3 +190,6 @@ export SDKMAN_DIR="/home/iniz/.sdkman"
 
 # added by travis gem
 [ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh
+
+# added by Miniconda3 installer
+export PATH="/home/iniz/miniconda3/bin:$PATH"

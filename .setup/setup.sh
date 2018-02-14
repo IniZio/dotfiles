@@ -75,6 +75,10 @@ cd /tmp
 curl -sL https://github.com/nana-4/Flat-Plat/archive/v20170307.tar.gz | tar xz
 cd Flat-Plat-20170307 && sudo ./install.sh && cd
 
+# Numix
+sudo add-apt-repository ppa:numix/ppa
+sudo apt update && sudo apt install numix-*
+
 # pip-related
 sudo apt-fast install -y python3-dev python3-setuptools python3-pip
 #   gcalcli
@@ -131,12 +135,15 @@ curl https://getcaddy.com | bash -s http.git,http.minify
 # chmod +x ~/.local/bin/git-town
 
 # Android studio
-mkdir ~/.usr
-curl -0 https://dl.google.com/dl/android/studio/ide-zips/2.3.3.0/android-studio-ide-162.4069837-linux.zip | tar -xf -C ~/.local/
-sudo add-apt-repository -y ppa:webupd8team/java
-sudo apt-fast update && sudo apt-fast install -y oracle-java8-installer
-update-alternatives --display java
-sudo bash -C "echo 'JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/environment"
+# mkdir ~/.usr
+# curl -0 https://dl.google.com/dl/android/studio/ide-zips/2.3.3.0/android-studio-ide-162.4069837-linux.zip | tar -xf -C ~/.local/
+# sudo add-apt-repository -y ppa:webupd8team/java
+# sudo apt-fast update && sudo apt-fast install -y oracle-java8-installer
+# update-alternatives --display java
+# sudo bash -C "echo 'JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/environment"
+sudo add-apt-repository ppa:maarten-fonville/android-studio
+sudo apt-get update
+sudo apt install android-studio
 
 # zsh
 sudo apt-fast install -y zsh

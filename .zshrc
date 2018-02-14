@@ -26,8 +26,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="bira"
-ZSH_THEME="dracula"
+ZSH_THEME="bira"
+#ZSH_THEME="dracula"
+#ZSH_THEME="spaceship"
 #ZSH_THEME="linuxer-fancy"
 #ZSH_THEME="refined"
 #ZSH_THEME="avit"
@@ -155,7 +156,7 @@ alias cls="clear"
 alias ls='ls -F --color=auto'
 alias scribble='cd ~/scribbles/; npm run post'
 alias imos='ssh eea258.ee.ust.hk'
-alias usthing='ssh usthing@pvs0068.ust.hk'
+alias usthing='ssh usthing@pvs0068.ust.hk -p 22002'
 alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
@@ -174,8 +175,8 @@ alias deadline='gcalcli --calendar Deadline quick'
 alias calendar='gcalcli --calendar Life quick'
 
 # conveniently share file with transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-  tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; echo "$(cat $tmpfile)"; rm -f $tmpfile; } 
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+  tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; echo "$(cat $tmpfile)"; rm -f $tmpfile; }
 
 # detach process from terminal
 detach () { eval "$*" &> /dev/null &}
@@ -205,9 +206,10 @@ killport() {
 alias sc='systemctl'
 alias sc-services='systemctl list-units --type=service | grep --color -E "active running|$"' ﻿
 alias bfg='java -jar ~/bfg.jar'
+alias android-studio='/opt/android-studio/bin/studio.sh'
 
 #set -o vi
-#figlet Ini Zio 
+#figlet Ini Zio
 ## place this after nvm initialization!
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -260,7 +262,7 @@ export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 export TASKDDATA="~/taskd"
 
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.yarn/bin:/home/iniz/miniconda3/bin:$PATH"
 
 # added by travis gem
 [ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh

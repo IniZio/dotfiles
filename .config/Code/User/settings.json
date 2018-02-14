@@ -3,7 +3,7 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
-    "editor.fontSize": 14,
+    "editor.fontSize": 15,
     "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
@@ -20,7 +20,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "Atom One Light",
+    "workbench.colorTheme": "One Dark Vivid",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -67,5 +67,16 @@
     "flow.enabled": false,
     "gitlens.gitExplorer.files.layout": "auto",
     "fileheader.Author": "Newman",
-    "fileheader.LastModifiedBy": "Newman"
+    "fileheader.LastModifiedBy": "Newman",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    "eslint.packageManager": "yarn"
 }
