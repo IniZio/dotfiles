@@ -20,7 +20,7 @@
         "**/*.min.js": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "One Dark Vivid",
+    "workbench.colorTheme": "One Dark Pro",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -47,7 +47,6 @@
     "prettier.singleQuote": true,
     "prettier.semi": false,
     "search.useIgnoreFilesByDefault": true,
-    "workbench.iconTheme": "material-icon-theme",
     "java.errors.incompleteClasspath.severity": "ignore",
     "flow.fileExtensions": [
         ".js",
@@ -78,5 +77,6 @@
         "suppressUpdateNotice": false,
         "suppressWelcomeNotice": true
     },
-    "eslint.packageManager": "yarn"
+    "eslint.packageManager": "yarn",
+    "workbench.iconTheme": "material-icon-theme"
 }

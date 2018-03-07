@@ -266,3 +266,4 @@ export PATH="$HOME/.yarn/bin:/home/iniz/miniconda3/bin:$PATH"
 
 # added by travis gem
 [ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
