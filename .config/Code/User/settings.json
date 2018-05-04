@@ -3,8 +3,8 @@
     "workbench.activityBar.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.visible": false,
-    "editor.fontSize": 15,
-    "editor.fontFamily": "'Fira Code', Input, 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "files.exclude": {
         "**/.nuxt": true,
@@ -17,10 +17,11 @@
         "**/.DS_Store": true,
         "**/dist": true,
         "**/*.js.map": true,
-        "**/*.min.js": true
+        "**/*.min.js": true,
+        "**/.cache": true
     },
     "editor.minimap.enabled": false,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Nord",
     "todohighlight.isCaseSensitive": false,
     "window.zoomLevel": 0,
     "files.insertFinalNewline": true,
@@ -28,6 +29,7 @@
     "vim.useCtrlKeys": false,
     "explorer.openEditors.visible": 0,
     "vim.useSystemClipboard": true,
+    "php.suggest.basic": false,
     "eslint.autoFixOnSave": true,
     "editor.smoothScrolling": true,
     "editor.lineHeight": 22,
@@ -78,5 +80,6 @@
         "suppressWelcomeNotice": true
     },
     "eslint.packageManager": "yarn",
-    "workbench.iconTheme": "material-icon-theme"
+    "php.memoryLimit": "1000M",
+    "git.autofetch": true
 }

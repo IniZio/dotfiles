@@ -1,5 +1,5 @@
 [alias]
-  l = log --pretty=colored --decorate --graph --date=relative --abbrev-commit --all
+  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   please = push --force-with-lease
   unstage = reset HEAD
 	append = town append
