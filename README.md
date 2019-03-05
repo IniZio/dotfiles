@@ -46,6 +46,7 @@
 - [Nodemon](https://www.npmjs.com/package/nodemon): watch files and restart nodejs script on change
 - [Git Town](http://www.git-town.com): When you love squash commits
 - [VTop](https://github.com/MrRio/vtop): really nice nodejs alternative of top
+- [pnpm](https://github.com/pnpm/pnpm): Fastest npm client on earth, even better than yarn
 
 ### Credits:
 

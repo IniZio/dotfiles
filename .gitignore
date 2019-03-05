@@ -17,6 +17,7 @@
 # Include editor config
 !.vimrc
 !.spacemacs
+!.config/change_wallpaper_reddit.rc
 !.config/nvim
 !.config/nvim/init.vim
 !.config/nyaovim

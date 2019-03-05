@@ -9,7 +9,7 @@ curl -s -o "$HOME/wallpaper/wallpaper-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | 
 #curl -s -o $HOME/wallpaper/wall.jpg -L https://source.unsplash.com/random/1920x1080 
 #curl -s -o $HOME/wallpaper/wall.jpg -L $URL
 
-#python $HOME/wallpaper/Daily-Reddit-wallpaper/change_wallpaper_reddit.py
+python $HOME/wallpaper/Daily-Reddit-Wallpaper/change_wallpaper_reddit.py
 
 randWall="$(find $HOME/wallpaper -type f | grep '.jpg' | shuf -n 1)"
 cp "$randWall" $HOME/wallpaper/wall.jpg

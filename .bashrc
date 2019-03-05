@@ -193,3 +193,8 @@ export SDKMAN_DIR="/home/iniz/.sdkman"
 
 # added by Miniconda3 installer
 export PATH="/home/iniz/miniconda3/bin:$PATH"
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
+
+
+# Created by `Pinpoint` on 2018-04-09 16:49:04
+export PATH="/home/iniz/pinpoint/bin:$PATH"

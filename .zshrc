@@ -3,7 +3,7 @@
 export GOPATH=$HOME/go
 export EDITOR="/usr/bin/vim"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_HOME="/usr/lib/android-sdk"
 export NPM_TOKEN=""
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -26,8 +26,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
-#ZSH_THEME="dracula"
+#ZSH_THEME="avit"
+#ZSH_THEME="bira"
+ZSH_THEME="dracula"
 #ZSH_THEME="spaceship"
 #ZSH_THEME="linuxer-fancy"
 #ZSH_THEME="refined"
@@ -160,6 +161,7 @@ alias usthing='ssh usthing@pvs0068.ust.hk -p 22002'
 alias ustfetch='ssh -i ~/magic/ustfetch-backend/ustfetch_backend.pem ubuntu@54.202.206.88'
 alias analax='ssh -i ~/analax.pem ubuntu@ec2-13-112-8-169.ap-northeast-1.compute.amazonaws.com'
 alias comp2021='ssh kcchowac@csl2wk01.cse.ust.hk'
+alias pp='pnpm'
 alias grep='grep --color=auto'
 alias emacs='emacs -nw'
 alias copy='xclip -sel clip'
@@ -262,8 +264,11 @@ export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 export TASKDDATA="~/taskd"
 
+PATH="/home/iniz/apache-maven-3.5.3/bin:$PATH"
 export PATH="$HOME/.yarn/bin:/home/iniz/miniconda3/bin:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
 # added by travis gem
 [ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. /home/iniz/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
