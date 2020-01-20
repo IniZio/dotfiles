@@ -25,7 +25,7 @@
 - [Atom IDE](https://ide.atom.io/) (Eye candy)
 - [VS Code](https://code.visualstudio.com/) (More useful than atom in terms of autocomplete, somtimes hiccup with insane delays tho)
 - ~~Synapse~~ [Cerebro](http://cerebroapp.com/): Unity's Alt-F2 alternative in i3wm
-- [Postman](https://www.getpostman.com/) / [Insominia](https://insomnia.rest/)
+- [Postm  an](https://www.getpostman.com/) / [Insominia](https://insomnia.rest/)
 - [Franz](http://meetfranz.com/) / [Rambox](http://rambox.pro/): Unify all your chat clients
 - Netease Music: Free asian spotify
 - [Typora](typora.io): Best Markdown writer (has Latex)
@@ -47,6 +47,12 @@
 - [Git Town](http://www.git-town.com): When you love squash commits
 - [VTop](https://github.com/MrRio/vtop): really nice nodejs alternative of top
 - [pnpm](https://github.com/pnpm/pnpm): Fastest npm client on earth, even better than yarn
+
+### Mac
+
+- Spectacle: Window manager. Still looking for better alternatives though
+- Postico: DB GUI client
+- Klokki: Time tracker
 
 ### Credits:
 
