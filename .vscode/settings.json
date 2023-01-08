@@ -1,0 +1,11 @@
+{
+  "git.untrackedChanges": "hidden",
+  "terminal.integrated.env.linux": {
+    "GIT_WORK_TREE": ".",
+    "GIT_DIR": "./.dotfiles"
+  },
+  "terminal.integrated.env.osx": {
+    "GIT_WORK_TREE": ".",
+    "GIT_DIR": "./.dotfiles"
+  },
+}

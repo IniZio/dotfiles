@@ -1,23 +1,13 @@
+[include]
+	path = .gitalias
 [alias]
-	 co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
-  l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  please = push --force-with-lease
-  unstage = reset HEAD
-	append = town append
-	hack = town hack
-	kill = town kill
-	new-pull-request = town new-pull-request
-	new-pr = town new-pull-request
-	prepend = town prepend
-	prune-branches = town prune-branches
-	rename-branch = town rename-branch
-	repo = town repo
-	ship = town ship
-	sync = town sync
-[commit]
-  template = ~/.gitmessage
+	co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	please = push --force-with-lease
+	unstage = reset HEAD
+	fixup = "!f() { TARGET=$(git rev-parse \"$1\"); git commit --fixup=$TARGET && GIT_EDITOR=true git rebase --interactive --autosquash $TARGET~; }; f"
 [pretty]
-  colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
+	colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [user]
 	email = newman.kcchow@gmail.com
 	name = inizio
@@ -28,6 +18,7 @@
 	clean = git-lfs clean -- %f
 [push]
 	default = simple
+	autoSetupRemote = true
 [status]
 	submoduleSummary = true
 [core]

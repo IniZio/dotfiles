@@ -1,10 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-# We use preexec and precmd hook functions for Bash
-# If you have anything that's using the Debug Trap or PROMPT_COMMAND 
-# change it to use preexec or precmd
-# See also https://github.com/rcaloras/bash-preexec
 
 # If not running interactively, don't do anything
 case $- in
@@ -67,6 +63,15 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -111,90 +116,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# If this is an xterm set more declarative titles 
-# "dir: last_cmd" and "actual_cmd" during execution
-# If you want to exclude a cmd from being printed see line 156
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\$(print_title)\a\]$PS1"
-    __el_LAST_EXECUTED_COMMAND=""
-    print_title () 
-    {
-        __el_FIRSTPART=""
-        __el_SECONDPART=""
-        if [ "$PWD" == "$HOME" ]; then
-            __el_FIRSTPART=$(gettext --domain="pantheon-files" "Home")
-        else
-            if [ "$PWD" == "/" ]; then
-                __el_FIRSTPART="/"
-            else
-                __el_FIRSTPART="${PWD##*/}"
-            fi
-        fi
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == "" ]]; then
-            echo "$__el_FIRSTPART"
-            return
-        fi
-        #trim the command to the first segment and strip sudo
-        if [[ "$__el_LAST_EXECUTED_COMMAND" == sudo* ]]; then
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND:5}"
-            __el_SECONDPART="${__el_SECONDPART%% *}"
-        else
-            __el_SECONDPART="${__el_LAST_EXECUTED_COMMAND%% *}"
-        fi 
-        printf "%s: %s" "$__el_FIRSTPART" "$__el_SECONDPART"
-    }
-    put_title()
-    {
-        __el_LAST_EXECUTED_COMMAND="${BASH_COMMAND}"
-        printf "\033]0;%s\007" "$1"
-    }
-    
-    # Show the currently running command in the terminal title:
-    # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-    update_tab_command()
-    {
-        # catch blacklisted commands and nested escapes
-        case "$BASH_COMMAND" in 
-            *\033]0*|update_*|echo*|printf*|clear*|cd*)
-            __el_LAST_EXECUTED_COMMAND=""
-                ;;
-            *)
-            put_title "${BASH_COMMAND}"
-            ;;
-        esac
-    }
-    preexec_functions+=(update_tab_command)
-    ;;
-*)
-    ;;
-esac
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export EDITOR="vim"
 
-#figlet IniZio
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+# rvm
+source "/etc/profile.d/rvm.sh"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
-source /etc/bash_completion.d/climate_completion
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# transfer.sh
+transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl -H "Max-Downloads: 1" -H "Max-Days: 5" --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/iniz/.sdkman"
-[[ -s "/home/iniz/.sdkman/bin/sdkman-init.sh" ]] && source "/home/iniz/.sdkman/bin/sdkman-init.sh"
-
-# added by travis gem
-[ -f /home/iniz/.travis/travis.sh ] && source /home/iniz/.travis/travis.sh
-
-# added by Miniconda3 installer
-export PATH="/home/iniz/miniconda3/bin:$PATH"
-if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
-
-
-# Created by `Pinpoint` on 2018-04-09 16:49:04
-export PATH="/home/iniz/pinpoint/bin:$PATH"
+# dotfiles
+alias dots="GIT_WORK_TREE=~ GIT_DIR=$HOME/.dotfiles"
