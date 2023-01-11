@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  setup-basic:
+    cmds:
+      - git clone --bare git@github.com:IniZio/dotfiles.git ~/.dotfiles || true
+    status:
+      - test -d ~/.dotfiles
+
+  setup-ubuntu:
+    - task: setup-basic
+
+  setup-brew:
+    desc: Installs homebrew
+    cmds:
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    status:
+      - command -v brew
+
+  brew-install:
+    cmds:
+      - brew install \
+        diff-so-fancy \
+        howdoi
