@@ -3,9 +3,17 @@ if status is-interactive
 end
 
 source ~/.asdf/asdf.fish
+
 set -x EDITOR vim
+set -x GPG_TTY (tty)
 
 alias docker-compose="docker compose"
+alias dc="docker compose"
+
+fish_add_path /opt/homebrew/bin/
+
+fish_add_path $ANDROID_HOME/tools
+fish_add_path $ANDROID_HOME/platform-tools
 
 # dotfiles management
 # reference: https://www.atlassian.com/git/tutorials/dotfiles
