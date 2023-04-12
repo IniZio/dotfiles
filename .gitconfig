@@ -6,11 +6,13 @@
 	please = push --force-with-lease
 	unstage = reset HEAD
 	fixup = "!f() { TARGET=$(git rev-parse \"$1\"); git commit --fixup=$TARGET && GIT_EDITOR=true git rebase --interactive --autosquash --autostash $TARGET~; }; f"
+	sync = !sh -c 'git fetch origin $1 && git rebase origin/$1' -
 [pretty]
 	colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
 [user]
-	email = newman.kcchow@gmail.com
-	name = inizio
+	email = newman@oursky.com
+	name = Newman Chow
+	signingkey = 33606C479B14ECFE60813E72A90C985622FD8990
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -39,5 +41,7 @@
 	whitespace = red reverse
 [commit]
 	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin//gpg
 [rebase]
 	autoStash = true
