@@ -45,3 +45,5 @@
 	program = /opt/homebrew/bin//gpg
 [rebase]
 	autoStash = true
+[diff "blackbox"]
+    	textconv = gpg --use-agent -q --batch --decrypt

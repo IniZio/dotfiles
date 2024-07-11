@@ -4,7 +4,7 @@ end
 
 source ~/.asdf/asdf.fish
 
-set -x EDITOR vim
+set -x EDITOR nvim
 set -x GPG_TTY (tty)
 
 alias docker-compose="docker compose"

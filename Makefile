@@ -22,7 +22,8 @@ setup-brew:
 brew-install: setup-brew
 	brew install \
 		diff-so-fancy \
-		howdoi
+		howdoi \
+		neovim
 
 # Open dotfiles in vscode
 .PHONY: dots-code
