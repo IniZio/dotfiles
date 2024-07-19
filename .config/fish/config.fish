@@ -14,6 +14,8 @@ fish_add_path /opt/homebrew/bin/
 
 fish_add_path $ANDROID_HOME/tools
 fish_add_path $ANDROID_HOME/platform-tools
+fish_add_path /nix/var/nix/profiles/default/bin
+fish_add_path $HOME/.nix-profile/bin
 
 # dotfiles management
 # reference: https://www.atlassian.com/git/tutorials/dotfiles
