@@ -4,12 +4,12 @@
 
 - Homebrew
 
-### Setup:
+### Setup
 
 1. `git clone --bare git@github.com:IniZio/dotfiles.git ~/.dotfiles`
 1. `GIT_WORK_TREE=~ GIT_DIR=$HOME/.dotfiles git restore --staged ./`
 1. `GIT_WORK_TREE=~ GIT_DIR=$HOME/.dotfiles git restore ./`
-2. `make setup-ubuntu` / `make setup-mac`
+1. `make setup-ubuntu` / `make setup-mac`
 
 ### Environments
 
@@ -27,6 +27,17 @@
 - howdoi: `pip install howdoi`
 - [Etcher](https://etcher.io/): USB writer with a finally good UI
 - Neovim
+
+```sh
+# Install home-manager
+# https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+
+# devenv
+nix-env -iA devenv -f https://github.com/NixOS/nixpkgs/tarball/nixpkgs-unstable
+```
 
 #### Mac
 
