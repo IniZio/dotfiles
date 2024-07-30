@@ -12,3 +12,6 @@ vim.opt.smartcase = true
 
 -- Brackets
 vim.opt.showmatch = true
+
+-- Prettier
+vim.g.lazyvim_prettier_needs_config = true
