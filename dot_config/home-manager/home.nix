@@ -21,6 +21,8 @@
     pkgs.gnumake
     pkgs.git
     pkgs.fish
+    pkgs.gnupg
+    pkgs.blackbox
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
