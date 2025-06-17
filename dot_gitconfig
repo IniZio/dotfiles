@@ -37,7 +37,6 @@
 [user]
 	email = newman@oursky.com
 	name = Newman Chow
-	# signingkey = 33606C479B14ECFE60813E72A90C985622FD8990
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
