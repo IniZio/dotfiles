@@ -1,0 +1,67 @@
+[column]
+        ui = auto
+[branch]
+        sort = -committerdate
+[tag]
+        sort = version:refname
+[init]
+        defaultBranch = main
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
+[core]
+	excludesfile = ~/.gitignore
+
+[include]
+	path = .gitalias
+[alias]
+	co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	please = push --force-with-lease
+	pl = push --force-with-lease
+	unstage = reset HEAD
+	fixup = "!f() { TARGET=$(git rev-parse \"$1\"); git commit --fixup=$TARGET && GIT_EDITOR=true git rebase --interactive --autosquash --autostash $TARGET~; }; f"
+	sync = !sh -c 'git fetch origin $1 && git rebase origin/$1' -
+[pretty]
+	colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
+[user]
+	email = newman@oursky.com
+	name = Newman Chow
+	# signingkey = 33606C479B14ECFE60813E72A90C985622FD8990
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[status]
+	submoduleSummary = true
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[commit]
+	# gpgsign = true
+[rebase]
+	autoStash = true
+[diff "blackbox"]
+    	textconv = gpg --use-agent -q --batch --decrypt
