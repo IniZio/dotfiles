@@ -8,6 +8,15 @@ case $- in
       *) return;;
 esac
 
+# (newman): Since fish is not POSIX compliant, we don't want to run it as login shell
+# instead only switch to fish if the shell is interactive and not running fish
+# https://wiki.nixos.org/wiki/Fish
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+then
+    shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+    exec fish $LOGIN_OPTION
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
