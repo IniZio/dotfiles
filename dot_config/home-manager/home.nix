@@ -23,6 +23,10 @@
     pkgs.fish
     pkgs.gnupg
     pkgs.blackbox
+    pkgs.nodejs_24
+    pkgs.azure-cli
+    pkgs.python314
+    pkgs.pipx
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -74,7 +78,8 @@
   #  /etc/profiles/per-user/iniz/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "vim";
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   # Let Home Manager install and manage itself.
