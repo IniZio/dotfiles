@@ -13,7 +13,6 @@
   nixpkgs.config.allowUnfree = true;
   # Allow ghostty, which is marked as broken on macOS.
   nixpkgs.config.allowBroken = true;
-  # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   home.packages = with pkgs; [
     nixd
