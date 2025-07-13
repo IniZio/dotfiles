@@ -52,6 +52,7 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
+        "aarch64-darwin"
       ];
 
       perSystem =
@@ -72,6 +73,10 @@
           "iniz@monster" = mkHome {
             identifier = "iniz-monster";
             system = "x86_64-linux";
+          };
+          "newman@oursky" = mkHome {
+            identifier = "newman-oursky";
+            system = "aarch64-darwin";
           };
         };
       };
