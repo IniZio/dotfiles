@@ -1,3 +1,3 @@
 ```bash
- home-manager switch --flake .#iniz-monster
+ home-manager switch --flake ./nix#iniz-monster
  ```
