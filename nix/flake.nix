@@ -9,7 +9,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # Mange home configurations
-    # It's currently used for installing packages only, configurations are managed by chezmoi.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
