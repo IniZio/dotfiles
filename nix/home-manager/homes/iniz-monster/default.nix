@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     nixd
     chezmoi
+    jq
     fzf
     go-task
     htop
@@ -27,6 +28,7 @@
     gnupg
     blackbox
     ghostty
+    code-server
   ];
 
   # Let Home Manager install and manage itself.
