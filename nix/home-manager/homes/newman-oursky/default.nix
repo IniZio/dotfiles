@@ -26,11 +26,7 @@
     fish
     gnupg
     blackbox
-    ghostty
-    code-server
-    # macOS-specific packages
-    mas # Mac App Store CLI
-    # Remove or conditionally include Linux-specific packages if any
+    direnv
   ];
 
   # macOS-specific configuration
