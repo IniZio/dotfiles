@@ -24,9 +24,12 @@
     gnumake
     git
     fish
+    oh-my-fish
     gnupg
     blackbox
     direnv
+    ps
+    github-cli
   ];
 
   # macOS-specific configuration
