@@ -30,6 +30,7 @@
     direnv
     ps
     github-cli
+    google-cloud-sdk
   ];
 
   # macOS-specific configuration
