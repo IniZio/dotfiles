@@ -31,6 +31,7 @@
     ps
     github-cli
     google-cloud-sdk
+    dua
   ];
 
   # macOS-specific configuration
