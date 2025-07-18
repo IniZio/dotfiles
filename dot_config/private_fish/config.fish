@@ -11,4 +11,9 @@ fish_add_path "$HOME/.local/bin"
 set -g direnv_fish_mode eval_after_arrow
 direnv hook fish | source
 
+set -e GIT_DIR
+set -e GIT_WORKTREE
+
 fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" > /dev/null
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
