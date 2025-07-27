@@ -32,7 +32,8 @@
     github-cli
     google-cloud-sdk
     dua
-    rg
+    ripgrep
+    bun
   ];
 
   # macOS-specific configuration
