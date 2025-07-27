@@ -32,6 +32,7 @@
     github-cli
     google-cloud-sdk
     dua
+    rg
   ];
 
   # macOS-specific configuration
