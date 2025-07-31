@@ -3,6 +3,7 @@ if status is-interactive
 end
 
 alias dc="docker compose"
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 fish_add_path "$HOME/.local/bin"
 
