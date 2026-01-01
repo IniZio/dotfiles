@@ -78,6 +78,10 @@
             identifier = "newman-oursky";
             system = "aarch64-darwin";
           };
+          "newman@devcontainer" = mkHome {
+            identifier = "newman-devcontainer";
+            system = "x86_64-linux";
+          };
         };
       };
     };
