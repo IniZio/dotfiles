@@ -19,7 +19,6 @@
     chezmoi
     jq
     fzf
-    go-task
     htop
     gnumake
     git
@@ -29,11 +28,10 @@
     blackbox
     direnv
     ps
-    github-cli
     google-cloud-sdk
     dua
     ripgrep
-    bun
+    opencode
   ];
 
   # macOS-specific configuration
