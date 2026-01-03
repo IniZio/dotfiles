@@ -164,37 +164,11 @@
       environment:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
 
-    - name: Configure Chezmoi Email
-      copy:
-        dest: "/home/{{ user }}/.config/chezmoi/chezmoi.toml"
-        content: |
-          [data]
-            email = "newman@oursky.com"
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: '0600'
-        force: no
-
     - name: Apply Dotfiles (Chezmoi)
       shell: |
         /snap/bin/chezmoi apply
       become: true
       become_user: "{{ user }}"
-
-    - name: Sync Host Nix Config (Override Container)
-      synchronize:
-        src: /home/newman/nix/
-        dest: /home/{{ user }}/nix/
-        owner: no
-        group: no
-      delegate_to: localhost
-
-    - name: Fix Nix Config Permissions
-      file:
-        path: "/home/{{ user }}/nix"
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        recurse: yes
 
     - name: Install Nix (Determinate Systems)
       shell: |
@@ -235,33 +209,12 @@
       args:
         creates: /usr/sbin/tailscale
 
-    - name: Ensure Config Dir Exists
-      file:
-        path: "/home/{{ user }}/.config/containers"
-        state: directory
-        owner: "{{ user }}"
-        group: "{{ user }}"
+    - name: Install Docker & Compose
+      raw: apt-get install -y docker.io docker-compose-v2
+      changed_when: false
 
-    - name: Configure Podman (Policy)
-      copy:
-        dest: "/home/{{ user }}/.config/containers/policy.json"
-        content: |
-          {
-              "default": [
-                  {
-                      "type": "insecureAcceptAnything"
-                  }
-              ]
-          }
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: '0644'
-
-    - name: Configure Podman (Registries)
-      copy:
-        dest: "/home/{{ user }}/.config/containers/registries.conf"
-        content: |
-          unqualified-search-registries=["docker.io"]
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: '0644'
+    - name: Ensure Docker Service is Started
+      service:
+        name: docker
+        state: started
+        enabled: yes
