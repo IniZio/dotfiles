@@ -119,4 +119,5 @@ fi
 eval "$(direnv hook bash)"
 
 # Created by `pipx` on 2025-06-27 09:35:41
-export PATH="$PATH:/home/iniz/.local/bin"
+export PATH="$PATH:~/.local/bin"
+eval "$(mise activate bash)"
