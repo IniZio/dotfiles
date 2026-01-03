@@ -1,0 +1,217 @@
+---
+- name: Host Setup (LXD & Network)
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: true
+  vars:
+    container_name: "{{ target_container | default('devbox') }}"
+    host_uid: 1003
+    host_gid: 1003
+    network_interface: "enp100s0"
+
+  tasks:
+    - name: Enable IP Forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
+        state: present
+
+    - name: Configure IPTables NAT
+      iptables:
+        table: nat
+        chain: POSTROUTING
+        out_interface: "{{ network_interface }}"
+        jump: MASQUERADE
+
+    - name: Configure IPTables Forwarding (In)
+      iptables:
+        chain: FORWARD
+        in_interface: lxdbr0
+        out_interface: "{{ network_interface }}"
+        jump: ACCEPT
+
+    - name: Configure IPTables Forwarding (Out)
+      iptables:
+        chain: FORWARD
+        in_interface: "{{ network_interface }}"
+        out_interface: lxdbr0
+        match: state
+        ctstate: RELATED,ESTABLISHED
+        jump: ACCEPT
+
+    - name: Ensure LXD Profile Exists
+      shell: |
+        lxc profile show devbox || lxc profile create devbox
+      register: profile_check
+      changed_when: profile_check.rc != 0
+      failed_when: profile_check.rc != 0 and "not found" not in profile_check.stderr
+
+    - name: Configure LXD Profile (Nesting & ID Map)
+      shell: |
+        lxc profile set devbox security.nesting=true
+        lxc profile set devbox raw.idmap="uid {{ host_uid }} {{ host_uid }}
+        gid {{ host_gid }} {{ host_gid }}"
+      changed_when: false
+
+    - name: Launch Container
+      shell: |
+        lxc launch ubuntu:25.10 {{ container_name }} --profile default --profile devbox
+      args:
+        creates: "/var/lib/lxd/containers/{{ container_name }}"
+      register: container_launch
+      # Ignore error if it already exists (handled by creates, but launch fails if exists)
+      failed_when: container_launch.rc != 0 and "already exists" not in container_launch.stderr
+
+    - name: Map Host Volume
+      shell: |
+        lxc config device add {{ container_name }} magic disk source=/home/newman/magic/{{ container_name }} path=/home/newman/magic
+      register: device_add
+      failed_when: device_add.rc != 0 and "already exists" not in device_add.stderr
+      changed_when: device_add.rc == 0
+
+    - name: Wait for IP Address
+      shell: lxc list {{ container_name }} --format json | jq -r '.[0].state.network.eth0.addresses[] | select(.family=="inet") | .address'
+      register: container_ip
+      until: container_ip.stdout != ""
+      retries: 20
+      delay: 3
+      changed_when: false
+
+- name: Container Provisioning
+  hosts: "{{ target_container | default('devbox') }}"
+  connection: lxd
+  gather_facts: false
+  become: true
+  vars:
+    user: newman
+    uid: 1003
+    gid: 1003
+
+  tasks:
+    - name: Install System Dependencies
+      raw: apt-get update && apt-get install -y git curl python3 uidmap snapd
+      changed_when: false
+
+    # Now we can gather facts since python is installed
+    - name: Gather Facts
+      setup:
+
+    - name: Create Group
+      group:
+        name: "{{ user }}"
+        gid: "{{ gid }}"
+
+    - name: Create User
+      user:
+        name: "{{ user }}"
+        uid: "{{ uid }}"
+        group: "{{ user }}"
+        groups: sudo,docker
+        shell: /bin/bash
+        append: true
+        create_home: true
+
+    - name: Ensure .ssh directory
+      file:
+        path: "/home/{{ user }}/.ssh"
+        state: directory
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0700'
+
+    - name: Copy SSH Keys from Host
+      copy:
+        src: "/home/newman/.ssh/{{ item }}"
+        dest: "/home/{{ user }}/.ssh/{{ item }}"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0600'
+      with_items:
+        - id_ed25519
+        - id_ed25519.pub
+
+    - name: Install Chezmoi (Snap)
+      shell: snap install chezmoi --classic
+      args:
+        creates: /snap/bin/chezmoi
+
+    - name: Initialize Dotfiles (Chezmoi)
+      shell: |
+        /snap/bin/chezmoi init --apply git@github.com:IniZio/dotfiles.git
+      args:
+        creates: "/home/{{ user }}/.local/share/chezmoi"
+      become: true
+      become_user: "{{ user }}"
+      environment:
+        # Ensure SSH agent isn't needed or key is used.
+        # Since we copied the key, git should just work if we accept host key.
+        # We might need to disable host key checking for github.
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+
+    - name: Install Nix (Determinate Systems)
+      shell: |
+        curl -fsSL https://install.determinate.systems/nix | sh -s -- install --no-confirm
+      args:
+        creates: /nix/var/nix/db
+
+    - name: Add Home Manager Channel
+      shell: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+        nix-channel --update
+      args:
+        creates: "/home/{{ user }}/.nix-channels"
+      become: true
+      become_user: "{{ user }}"
+
+    - name: Install Home Manager
+      shell: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        nix-shell '<home-manager>' -A install
+      args:
+        creates: "/home/{{ user }}/.config/home-manager/home.nix"
+      become: true
+      become_user: "{{ user }}"
+      # Fails if already installed, handled by creates
+
+    - name: Apply Flake Configuration
+      shell: |
+        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        # Check if flake.nix exists in ~/nix, if not copy from host?
+        # Chezmoi should have populated ~/nix from the dotfiles repo.
+        home-manager switch --flake ~/nix#newman@devcontainer
+      become: true
+      become_user: "{{ user }}"
+      args:
+        executable: /bin/bash
+
+    - name: Install Tailscale
+      shell: curl -fsSL https://tailscale.com/install.sh | sh
+      args:
+        creates: /usr/sbin/tailscale
+
+    - name: Configure Podman (Policy)
+      copy:
+        dest: "/home/{{ user }}/.config/containers/policy.json"
+        content: |
+          {
+              "default": [
+                  {
+                      "type": "insecureAcceptAnything"
+                  }
+              ]
+          }
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0644'
+
+    - name: Configure Podman (Registries)
+      copy:
+        dest: "/home/{{ user }}/.config/containers/registries.conf"
+        content: |
+          unqualified-search-registries=["docker.io"]
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0644'
