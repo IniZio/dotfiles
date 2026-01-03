@@ -40,7 +40,7 @@
   targets.darwin.defaults = {
     # Example: configure dock preferences
     "com.apple.dock" = {
-      autohide = true;
+      autohide = false;
       orientation = "bottom";
       tilesize = 48;
     };
@@ -53,10 +53,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+ 
   programs.direnv = {
     enable = true;
     enableBashIntegration = true; # see note on other shells below
+    enableFishIntegration = true; # see note on other shells below
     nix-direnv.enable = true;
   };
 }
