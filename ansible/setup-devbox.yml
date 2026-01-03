@@ -157,7 +157,7 @@
 
     - name: Initialize Dotfiles (Chezmoi)
       shell: |
-        /snap/bin/chezmoi init --apply git@github.com:IniZio/dotfiles.git
+        /snap/bin/chezmoi init --apply git@github.com:IniZio/dotfiles.git --data '{"email":"newman@oursky.com"}'
       args:
         creates: "/home/{{ user }}/.local/share/chezmoi"
       become: true
