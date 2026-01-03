@@ -24,6 +24,7 @@
     blackbox
     mise
     distrobox
+    ansible
   ];
 
   programs.home-manager.enable = true;
