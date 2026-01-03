@@ -61,7 +61,6 @@
       args:
         creates: "/var/lib/lxd/containers/{{ container_name }}"
       register: container_launch
-      # Ignore error if it already exists (handled by creates, but launch fails if exists)
       failed_when: container_launch.rc != 0 and "already exists" not in container_launch.stderr
 
     - name: Map Host Volume
@@ -79,11 +78,15 @@
       delay: 3
       changed_when: false
 
+    - name: Add Container to Inventory
+      add_host:
+        name: "{{ container_name }}"
+        ansible_connection: lxd
+        ansible_user: root  # Connect as root initially to create user
+
 - name: Container Provisioning
   hosts: "{{ target_container | default('devbox') }}"
-  connection: lxd
   gather_facts: false
-  become: true
   vars:
     user: newman
     uid: 1003
@@ -94,7 +97,6 @@
       raw: apt-get update && apt-get install -y git curl python3 uidmap snapd
       changed_when: false
 
-    # Now we can gather facts since python is installed
     - name: Gather Facts
       setup:
 
@@ -145,9 +147,6 @@
       become: true
       become_user: "{{ user }}"
       environment:
-        # Ensure SSH agent isn't needed or key is used.
-        # Since we copied the key, git should just work if we accept host key.
-        # We might need to disable host key checking for github.
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
 
     - name: Install Nix (Determinate Systems)
@@ -174,13 +173,10 @@
         creates: "/home/{{ user }}/.config/home-manager/home.nix"
       become: true
       become_user: "{{ user }}"
-      # Fails if already installed, handled by creates
 
     - name: Apply Flake Configuration
       shell: |
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        # Check if flake.nix exists in ~/nix, if not copy from host?
-        # Chezmoi should have populated ~/nix from the dotfiles repo.
         home-manager switch --flake ~/nix#newman@devcontainer
       become: true
       become_user: "{{ user }}"
@@ -191,6 +187,13 @@
       shell: curl -fsSL https://tailscale.com/install.sh | sh
       args:
         creates: /usr/sbin/tailscale
+
+    - name: Ensure Config Dir Exists
+      file:
+        path: "/home/{{ user }}/.config/containers"
+        state: directory
+        owner: "{{ user }}"
+        group: "{{ user }}"
 
     - name: Configure Podman (Policy)
       copy:
