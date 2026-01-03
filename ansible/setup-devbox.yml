@@ -149,6 +149,12 @@
         - id_ed25519
         - id_ed25519.pub
 
+    - name: Add IniZio GitHub Keys to Authorized Keys
+      authorized_key:
+        user: "{{ user }}"
+        state: present
+        key: "https://github.com/IniZio.keys"
+
     - name: Install Chezmoi (Snap)
       shell: snap install chezmoi --classic
       args:
