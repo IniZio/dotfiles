@@ -51,6 +51,8 @@
     - name: Configure LXD Profile (Nesting & ID Map)
       shell: |
         lxc profile set devbox security.nesting=true
+        lxc profile set devbox limits.memory=8GB
+        lxc profile set devbox limits.cpu=4
         lxc profile set devbox raw.idmap="uid {{ host_uid }} {{ host_uid }}
         gid {{ host_gid }} {{ host_gid }}"
       changed_when: false
