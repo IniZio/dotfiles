@@ -14,6 +14,7 @@ mkdir -p "/home/newman/magic/$CONTAINER_NAME"
 
 echo ">> Running Ansible Playbook..."
 ansible-playbook /home/newman/ansible/setup-devbox.yml \
+    --ask-become-pass \
     -e "target_container=$CONTAINER_NAME"
 
 echo ">> Setup Complete!"
