@@ -12,7 +12,7 @@ encryption = "gpg"
 [gpg]
     recipient = "newman@oursky.com"
 
-{{- if eq .chezmoi.hostname "oursky" }}
+{{- if eq .chezmoi.os "darwin" }}
 [edit]
     command = "zed"
     args = ["--wait"]
