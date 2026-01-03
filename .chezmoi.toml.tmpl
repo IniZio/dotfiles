@@ -12,6 +12,8 @@ encryption = "gpg"
 [gpg]
     recipient = "newman@oursky.com"
 
+{{- if eq .chezmoi.hostname "oursky" }}
 [edit]
-    command = "code"
+    command = "zed"
     args = ["--wait"]
+{{ end }}
