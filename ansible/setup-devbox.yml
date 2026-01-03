@@ -157,24 +157,13 @@
 
     - name: Initialize Dotfiles (Chezmoi)
       shell: |
-        /snap/bin/chezmoi init git@github.com:IniZio/dotfiles.git || true
+        /snap/bin/chezmoi init git@github.com:IniZio/dotfiles.git
       args:
-        creates: "/home/newman/.local/share/chezmoi"
+        creates: "/home/{{ user }}/.local/share/chezmoi"
       become: true
       become_user: "{{ user }}"
       environment:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-
-    - name: Configure Chezmoi Email
-      copy:
-        dest: "/home/newman/.config/chezmoi/chezmoi.toml"
-        content: |
-          [data]
-            email = "newman@oursky.com"
-        owner: "{{ user }}"
-        group: "{{ user }}"
-        mode: '0600'
-        force: no
 
     - name: Apply Dotfiles (Chezmoi)
       shell: |
