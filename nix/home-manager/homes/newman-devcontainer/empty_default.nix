@@ -24,6 +24,7 @@
     gnupg
     blackbox
     mise
+    opencode
   ];
 
   # Let Home Manager install and manage itself.
