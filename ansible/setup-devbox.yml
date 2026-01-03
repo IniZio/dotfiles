@@ -107,6 +107,11 @@
         name: "{{ user }}"
         gid: "{{ gid }}"
 
+    - name: Create Docker Group
+      group:
+        name: docker
+        state: present
+
     - name: Create User
       user:
         name: "{{ user }}"
