@@ -67,10 +67,9 @@
 
     - name: Map Host Volume
       shell: |
-        lxc config device add {{ container_name }} magic disk source=/home/newman/magic/{{ container_name }} path=/home/newman/magic
+        lxc config device add {{ container_name }} magic disk source=/home/newman/magic/{{ container_name }} path=/home/newman/magic/{{ container_name }}
       register: device_add
       failed_when: device_add.rc != 0 and "already exists" not in device_add.stderr
-      changed_when: device_add.rc == 0
 
     - name: Wait for IP Address
       shell: lxc list {{ container_name }} --format json | jq -r '.[0].state.network.eth0.addresses[] | select(.family=="inet") | .address'
@@ -165,11 +164,37 @@
       environment:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
 
+    - name: Configure Chezmoi Email
+      copy:
+        dest: "/home/{{ user }}/.config/chezmoi/chezmoi.toml"
+        content: |
+          [data]
+            email = "newman@oursky.com"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0600'
+        force: no
+
     - name: Apply Dotfiles (Chezmoi)
       shell: |
         /snap/bin/chezmoi apply
       become: true
       become_user: "{{ user }}"
+
+    - name: Sync Host Nix Config (Override Container)
+      synchronize:
+        src: /home/newman/nix/
+        dest: /home/{{ user }}/nix/
+        owner: no
+        group: no
+      delegate_to: localhost
+
+    - name: Fix Nix Config Permissions
+      file:
+        path: "/home/{{ user }}/nix"
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        recurse: yes
 
     - name: Install Nix (Determinate Systems)
       shell: |
