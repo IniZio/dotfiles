@@ -120,4 +120,5 @@ fi
 export PATH="$PATH:~/.local/bin"
 eval "$(mise activate bash)"
 
-eval "$(direnv hook bash)" || true
+if ! eval "$(direnv hook bash)" =; then
+fi
