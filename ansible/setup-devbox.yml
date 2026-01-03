@@ -199,7 +199,7 @@
     - name: Apply Flake Configuration
       shell: |
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        home-manager switch --flake ~/nix#newman@devcontainer
+        home-manager switch --flake ~/nix#newman@devbox
       become: true
       become_user: "{{ user }}"
       args:
