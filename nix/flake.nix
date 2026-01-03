@@ -86,8 +86,8 @@
             identifier = "newman-linuxbox";
             system = "x86_64-linux";
           };
-          "newman@devcontainer" = mkHome {
-            identifier = "newman-devcontainer";
+          "newman@devbox" = mkHome {
+            identifier = "newman-devbox";
             system = "x86_64-linux";
           };
         };
