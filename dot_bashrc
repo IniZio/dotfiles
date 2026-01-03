@@ -116,8 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(direnv hook bash)"
-
 # Created by `pipx` on 2025-06-27 09:35:41
 export PATH="$PATH:~/.local/bin"
 eval "$(mise activate bash)"
+
+eval "$(direnv hook bash)" || true
