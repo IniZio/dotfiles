@@ -157,13 +157,19 @@
 
     - name: Initialize Dotfiles (Chezmoi)
       shell: |
-        /snap/bin/chezmoi init --apply git@github.com:IniZio/dotfiles.git --data '{"email":"newman@oursky.com"}'
+        /snap/bin/chezmoi init git@github.com:IniZio/dotfiles.git --data '{"email":"newman@oursky.com"}' || true
       args:
         creates: "/home/{{ user }}/.local/share/chezmoi"
       become: true
       become_user: "{{ user }}"
       environment:
         GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+
+    - name: Apply Dotfiles (Chezmoi)
+      shell: |
+        /snap/bin/chezmoi apply --data '{"email":"newman@oursky.com"}'
+      become: true
+      become_user: "{{ user }}"
 
     - name: Install Nix (Determinate Systems)
       shell: |
@@ -193,7 +199,7 @@
     - name: Apply Flake Configuration
       shell: |
         . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        home-manager switch --flake ~/.local/share/chezmoi/nix#newman@devcontainer
+        home-manager switch --flake ~/nix#newman@devcontainer
       become: true
       become_user: "{{ user }}"
       args:
