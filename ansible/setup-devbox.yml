@@ -122,6 +122,15 @@
         append: true
         create_home: true
 
+    - name: Fix Home Directory Permissions
+      file:
+        path: "/home/{{ user }}"
+        state: directory
+        owner: "{{ user }}"
+        group: "{{ user }}"
+        mode: '0755'
+        recurse: no
+
     - name: Ensure .ssh directory
       file:
         path: "/home/{{ user }}/.ssh"
