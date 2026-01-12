@@ -25,7 +25,7 @@
     mise
     distrobox
     ansible
-    asciicinema
+    asciinema
     tmux
   ];
 
