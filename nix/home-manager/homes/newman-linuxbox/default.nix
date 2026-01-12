@@ -25,6 +25,8 @@
     mise
     distrobox
     ansible
+    asciicinema
+    tmux
   ];
 
   programs.home-manager.enable = true;
