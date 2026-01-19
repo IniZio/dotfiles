@@ -27,6 +27,7 @@
     ansible
     asciinema
     tmux
+    zlib
   ];
 
   programs.home-manager.enable = true;
