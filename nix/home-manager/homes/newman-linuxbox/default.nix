@@ -28,6 +28,7 @@
     asciinema
     tmux
     zlib
+    git-crypt
   ];
 
   programs.home-manager.enable = true;
