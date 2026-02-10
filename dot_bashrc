@@ -117,5 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:~/.local/bin:./.opencode/bin"
+export PATH="/home/newman/.bun/bin:$PATH"
 eval "$(mise activate bash)"
 # eval "$(direnv hook bash)"
