@@ -29,6 +29,7 @@
     tmux
     zlib
     git-crypt
+    go-task
   ];
 
   programs.home-manager.enable = true;
