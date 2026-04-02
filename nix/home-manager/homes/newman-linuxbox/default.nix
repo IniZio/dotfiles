@@ -30,7 +30,7 @@
     zlib
     git-crypt
     go-task
-    emacsPackages.ast-grep
+    ast-grep
   ];
 
   programs.home-manager.enable = true;
