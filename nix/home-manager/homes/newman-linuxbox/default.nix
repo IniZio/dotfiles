@@ -31,6 +31,7 @@
     git-crypt
     go-task
     ast-grep
+    firecracker
   ];
 
   programs.home-manager.enable = true;
