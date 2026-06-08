@@ -31,6 +31,7 @@
     go-task
     ast-grep
     kubectl
+    sops
   ];
 
   programs.home-manager.enable = true;
