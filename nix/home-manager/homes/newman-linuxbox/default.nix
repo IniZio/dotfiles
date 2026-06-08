@@ -32,6 +32,7 @@
     ast-grep
     kubectl
     sops
+    google-cloud-sdk
   ];
 
   programs.home-manager.enable = true;
