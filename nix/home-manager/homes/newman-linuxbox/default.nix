@@ -32,6 +32,7 @@
     ast-grep
     kubectl
     sops
+    xfsprogs
   ];
 
   programs.home-manager.enable = true;
