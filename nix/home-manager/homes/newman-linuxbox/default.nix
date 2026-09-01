@@ -32,6 +32,7 @@
     ast-grep
     kubectl
     sops
+    k9s
   ];
 
   programs.home-manager.enable = true;
